@@ -1330,6 +1330,7 @@
       max-width: 330px;
       margin: 0 auto !important;
     }
+    .nav-pill-capsule[data-tab-count="4"],
     .nav-pill-capsule[data-tab-count="5"] {
       max-width: 100%;
       margin: 0 auto !important;
@@ -1760,22 +1761,7 @@
           <span class="nav-tab-label" id="navLabelTrips">My Bookings</span>
         </button>
 
-        <!-- 3. Driver Tasks -->
-        <button class="nav-tab-btn" id="tab-driver" onclick="app.switchTab('driver')">
-          <div class="nav-tab-icon">
-            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <circle cx="12" cy="12" r="3.2"/>
-              <line x1="12" y1="2" x2="12" y2="8.8"/>
-              <line x1="4.93" y1="16.5" x2="9.8" y2="13.7"/>
-              <line x1="19.07" y1="16.5" x2="14.2" y2="13.7"/>
-            </svg>
-            <span class="nav-badge-dot" id="navBadgeDriver" style="display:none;">0</span>
-          </div>
-          <span class="nav-tab-label" id="navLabelDriver">Tasks</span>
-        </button>
-
-        <!-- 4. Approvals -->
+        <!-- 3. Approvals -->
         <button class="nav-tab-btn" id="tab-approvals" onclick="app.switchTab('approvals')">
           <div class="nav-tab-icon">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
@@ -1981,22 +1967,6 @@
         <button class="sheet-close-round" onclick="app.closeSheet('passSheetOverlay')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <div class="sheet-scroll-body" id="passSheetContent">
-        <!-- Rendered by JS -->
-      </div>
-    </div>
-  </div>
-
-  <!-- 7. Bottom Sheet: Complete Driving Mission -->
-  <div class="sheet-overlay" id="completeTaskSheetOverlay" onclick="app.onOverlayClick(event, 'completeTaskSheetOverlay')">
-    <div class="bottom-sheet-panel">
-      <div class="sheet-handle-zone" onclick="app.closeSheet('completeTaskSheetOverlay')">
-        <div class="sheet-handle-pill"></div>
-      </div>
-      <div class="sheet-header-row">
-        <div class="sheet-title-text" id="completeTaskTitle">Complete Driving Mission</div>
-        <button class="sheet-close-round" onclick="app.closeSheet('completeTaskSheetOverlay')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      </div>
-      <div class="sheet-scroll-body" id="completeTaskSheetContent">
         <!-- Rendered by JS -->
       </div>
     </div>
@@ -2526,10 +2496,6 @@
         // Nav labels
         document.getElementById('navLabelCars').textContent = this.t('nav_cars');
         document.getElementById('navLabelTrips').textContent = this.t('nav_trips');
-        const driverLabel = document.getElementById('navLabelDriver');
-        if (driverLabel) {
-          driverLabel.textContent = this.t('nav_driver');
-        }
         document.getElementById('navLabelApprovals').textContent = this.t('nav_approvals');
         document.getElementById('navLabelAdmin').textContent = this.t('nav_admin');
 
@@ -2537,9 +2503,12 @@
       },
 
       isTabAllowed(role, tab) {
-        if (role === 'Approver' || role === 'Admin') return true;
-        // General User (Employee)
-        return tab === 'cars' || tab === 'my-trips';
+        if (tab === 'driver') return false;
+        if (tab === 'cars' || tab === 'my-trips') return true;
+        if (role === 'Approver' || role === 'Admin') {
+          return tab === 'approvals' || tab === 'more';
+        }
+        return false;
       },
 
       updateNavPermissions() {
@@ -2548,30 +2517,27 @@
 
         const tabCars = document.getElementById('tab-cars');
         const tabTrips = document.getElementById('tab-my-trips');
-        const tabDriver = document.getElementById('tab-driver');
         const tabApprovals = document.getElementById('tab-approvals');
         const tabMore = document.getElementById('tab-more');
 
         // Role & Permissions Rules:
-        // • General User sees only Vehicle and My Bookings
-        // • Approver and Admin see all
-        const canSeeTask = (role === 'Approver' || role === 'Admin');
+        // • General User sees only Vehicle and My Bookings (2 tabs)
+        // • Approver and Admin see Vehicles, My Bookings, Approvals, and Admin (4 tabs)
         const canSeeApprovals = (role === 'Approver' || role === 'Admin');
         const canSeeAdmin = (role === 'Approver' || role === 'Admin');
 
         if (tabCars) tabCars.style.display = 'flex';
         if (tabTrips) tabTrips.style.display = 'flex';
-        if (tabDriver) tabDriver.style.display = canSeeTask ? 'flex' : 'none';
         if (tabApprovals) tabApprovals.style.display = canSeeApprovals ? 'flex' : 'none';
         if (tabMore) tabMore.style.display = canSeeAdmin ? 'flex' : 'none';
 
         // Adjust capsule container width so fewer tabs look centered and balanced
         const capsule = document.querySelector('.nav-pill-capsule');
         if (capsule) {
-          if (!canSeeTask && !canSeeApprovals && !canSeeAdmin) {
+          if (!canSeeApprovals && !canSeeAdmin) {
             capsule.setAttribute('data-tab-count', '2');
           } else {
-            capsule.setAttribute('data-tab-count', '5');
+            capsule.setAttribute('data-tab-count', '4');
           }
         }
 
@@ -2602,22 +2568,6 @@
           tripsBadge.textContent = myActive;
         } else {
           tripsBadge.style.display = 'none';
-        }
-
-        // Driver Tasks badge
-        const driverBadge = document.getElementById('navBadgeDriver');
-        if (driverBadge) {
-          if (u.role === 'Approver' || u.role === 'Admin') {
-            const activeDriverTasks = this.data.bookings.filter(b => b.driverId && b.taskStatus !== 'Completed').length;
-            if (activeDriverTasks > 0) {
-              driverBadge.style.display = 'flex';
-              driverBadge.textContent = activeDriverTasks;
-            } else {
-              driverBadge.style.display = 'none';
-            }
-          } else {
-            driverBadge.style.display = 'none';
-          }
         }
 
         // Notifications badge
@@ -2661,12 +2611,12 @@
           this.renderCarsTab(container);
         } else if (this.state.currentTab === 'my-trips') {
           this.renderMyTripsTab(container);
-        } else if (this.state.currentTab === 'driver') {
-          this.renderDriverTasksTab(container);
         } else if (this.state.currentTab === 'approvals') {
           this.renderApprovalsTab(container);
         } else if (this.state.currentTab === 'more') {
           this.renderMoreTab(container);
+        } else {
+          this.switchTab('cars');
         }
         this.updateBadges();
       },
@@ -5537,7 +5487,7 @@
         this.closeSheet('profileSheetOverlay');
         const u = this.getCurrentUser();
         if (u.role === 'Approver') {
-          this.showToast(`Switched account to Approver: ${u.name}. Tasks tab is View-Only.`, 'info');
+          this.showToast(`Switched account to Approver: ${u.name}. Approvals & Admin unlocked.`, 'info');
           if (!this.isTabAllowed(u.role, this.state.currentTab)) {
             this.switchTab('cars');
           } else {
