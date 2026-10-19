@@ -1567,6 +1567,47 @@
       box-shadow: 0 0 0 3px var(--c-primary-tint);
       background: var(--card);
     }
+
+    /* Date & Time Picker Icons Visibility */
+    .ppwsa-input[type="date"],
+    .ppwsa-input[type="time"],
+    .ppwsa-date-input,
+    .ppwsa-time-input {
+      color-scheme: light;
+      cursor: pointer;
+    }
+    [data-theme="dark"] .ppwsa-input[type="date"],
+    [data-theme="dark"] .ppwsa-input[type="time"],
+    [data-theme="dark"] .ppwsa-date-input,
+    [data-theme="dark"] .ppwsa-time-input {
+      color-scheme: dark;
+    }
+    .ppwsa-input[type="date"]::-webkit-calendar-picker-indicator,
+    .ppwsa-input[type="time"]::-webkit-calendar-picker-indicator,
+    .ppwsa-date-input::-webkit-calendar-picker-indicator,
+    .ppwsa-time-input::-webkit-calendar-picker-indicator {
+      display: block !important;
+      opacity: 0.85;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 3px;
+      filter: invert(32%) sepia(30%) saturate(1200%) hue-rotate(270deg);
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .ppwsa-input[type="date"]::-webkit-calendar-picker-indicator:hover,
+    .ppwsa-input[type="time"]::-webkit-calendar-picker-indicator:hover,
+    .ppwsa-date-input::-webkit-calendar-picker-indicator:hover,
+    .ppwsa-time-input::-webkit-calendar-picker-indicator:hover {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+    [data-theme="dark"] .ppwsa-input[type="date"]::-webkit-calendar-picker-indicator,
+    [data-theme="dark"] .ppwsa-input[type="time"]::-webkit-calendar-picker-indicator,
+    [data-theme="dark"] .ppwsa-date-input::-webkit-calendar-picker-indicator,
+    [data-theme="dark"] .ppwsa-time-input::-webkit-calendar-picker-indicator {
+      filter: invert(85%) sepia(10%) saturate(200%);
+      opacity: 0.95;
+    }
     .ppwsa-textarea {
       width: 100%;
       padding: 10px 12px;
@@ -1816,22 +1857,22 @@
         <div class="form-grid-2">
           <div class="form-group-block">
             <label class="form-label-bold">Start Date <span class="req-mark">*</span></label>
-            <input type="date" class="ppwsa-input" id="mBookStartDate" required oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" />
+            <input type="date" class="ppwsa-input" id="mBookStartDate" required oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" onclick="this.showPicker &amp;&amp; this.showPicker()" />
           </div>
           <div class="form-group-block">
             <label class="form-label-bold">Start Time <span class="req-mark">*</span></label>
-            <input type="time" class="ppwsa-input" id="mBookStartTime" required value="09:00" oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" />
+            <input type="time" class="ppwsa-input" id="mBookStartTime" required value="09:00" oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" onclick="this.showPicker &amp;&amp; this.showPicker()" />
           </div>
         </div>
 
         <div class="form-grid-2">
           <div class="form-group-block">
             <label class="form-label-bold">End Date <span class="req-mark">*</span></label>
-            <input type="date" class="ppwsa-input" id="mBookEndDate" required oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" />
+            <input type="date" class="ppwsa-input" id="mBookEndDate" required oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" onclick="this.showPicker &amp;&amp; this.showPicker()" />
           </div>
           <div class="form-group-block">
             <label class="form-label-bold">End Time <span class="req-mark">*</span></label>
-            <input type="time" class="ppwsa-input" id="mBookEndTime" required value="12:00" oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" />
+            <input type="time" class="ppwsa-input" id="mBookEndTime" required value="12:00" oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" onclick="this.showPicker &amp;&amp; this.showPicker()" />
           </div>
         </div>
 
