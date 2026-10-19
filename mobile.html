@@ -2237,8 +2237,6 @@
           { id: 'u2', name: 'Srey Neath', email: 'srey.neath@autofleet.corp', dept: 'Technical Services', role: 'Employee', phone: '097 554 321', initials: 'SN' },
           { id: 'u3', name: 'Piseth Roeun', email: 'piseth.r@autofleet.corp', dept: 'Quality Assurance', role: 'Employee', phone: '012 445 778', initials: 'PR' },
           { id: 'u4', name: 'Sophea Lim', email: 'sophea.lim@autofleet.corp', dept: 'Fleet Administration', role: 'Approver', phone: '089 112 334', initials: 'SL' },
-          { id: 'u5', name: 'Rithy Kong', email: 'rithy.k@autofleet.corp', dept: 'Fleet Transportation', role: 'Driver', driverId: 'd1', phone: '012 889 001', initials: 'RK' },
-          { id: 'u6', name: 'Bona Sam', email: 'bona.s@autofleet.corp', dept: 'Fleet Transportation', role: 'Driver', driverId: 'd2', phone: '098 776 554', initials: 'BS' },
           { id: 'u7', name: 'Admin User', email: 'admin@autofleet.corp', dept: 'Corporate Fleet Admin', role: 'Admin', phone: '012 333 444', initials: 'AU' }
         ],
         drivers: [
@@ -2412,8 +2410,12 @@
           const stored = localStorage.getItem('autofleet_demo_data');
           if (stored) {
             this.data = JSON.parse(stored);
+            // Filter out any users with role === 'Driver' from stored data
+            this.data.users = (this.data.users || []).filter(u => u.role !== 'Driver');
+            if (this.state.currentUser === 'u5' || this.state.currentUser === 'u6') {
+              this.state.currentUser = 'u1';
+            }
             const defData = getDefaultMockData();
-            // Ensure driver demo users exist even when loading from previous storage
             defData.users.forEach(defU => {
               if (!this.data.users.some(u => u.id === defU.id)) {
                 this.data.users.push(defU);
@@ -2474,7 +2476,7 @@
         document.getElementById('navLabelTrips').textContent = this.t('nav_trips');
         const driverLabel = document.getElementById('navLabelDriver');
         if (driverLabel) {
-          driverLabel.textContent = u.role === 'Driver' ? (this.state.lang === 'kh' ? 'ភារកិច្ចខ្ញុំ' : 'My Tasks') : this.t('nav_driver');
+          driverLabel.textContent = this.t('nav_driver');
         }
         document.getElementById('navLabelApprovals').textContent = this.t('nav_approvals');
         document.getElementById('navLabelAdmin').textContent = this.t('nav_admin');
@@ -2484,9 +2486,6 @@
 
       isTabAllowed(role, tab) {
         if (role === 'Approver' || role === 'Admin') return true;
-        if (role === 'Driver') {
-          return tab === 'cars' || tab === 'my-trips' || tab === 'driver';
-        }
         // General User (Employee)
         return tab === 'cars' || tab === 'my-trips';
       },
@@ -2503,9 +2502,8 @@
 
         // Role & Permissions Rules:
         // • General User sees only Vehicle and My Bookings
-        // • Driver sees only Vehicle, My Bookings, and Task
         // • Approver and Admin see all
-        const canSeeTask = (role === 'Driver' || role === 'Approver' || role === 'Admin');
+        const canSeeTask = (role === 'Approver' || role === 'Admin');
         const canSeeApprovals = (role === 'Approver' || role === 'Admin');
         const canSeeAdmin = (role === 'Approver' || role === 'Admin');
 
@@ -2520,8 +2518,6 @@
         if (capsule) {
           if (!canSeeTask && !canSeeApprovals && !canSeeAdmin) {
             capsule.setAttribute('data-tab-count', '2');
-          } else if (canSeeTask && !canSeeApprovals && !canSeeAdmin) {
-            capsule.setAttribute('data-tab-count', '3');
           } else {
             capsule.setAttribute('data-tab-count', '5');
           }
@@ -2529,8 +2525,7 @@
 
         // If active tab is not allowed for this role, redirect immediately
         if (!this.isTabAllowed(role, this.state.currentTab)) {
-          const fallbackTab = (role === 'Driver') ? 'driver' : 'cars';
-          this.switchTab(fallbackTab);
+          this.switchTab('cars');
         }
       },
 
@@ -2560,15 +2555,14 @@
         // Driver Tasks badge
         const driverBadge = document.getElementById('navBadgeDriver');
         if (driverBadge) {
-          let activeDriverTasks = 0;
-          if (u.role === 'Driver') {
-            activeDriverTasks = this.data.bookings.filter(b => b.driverId === u.driverId && b.taskStatus !== 'Completed').length;
-          } else {
-            activeDriverTasks = this.data.bookings.filter(b => b.driverId && b.taskStatus !== 'Completed').length;
-          }
-          if (activeDriverTasks > 0) {
-            driverBadge.style.display = 'flex';
-            driverBadge.textContent = activeDriverTasks;
+          if (u.role === 'Approver' || u.role === 'Admin') {
+            const activeDriverTasks = this.data.bookings.filter(b => b.driverId && b.taskStatus !== 'Completed').length;
+            if (activeDriverTasks > 0) {
+              driverBadge.style.display = 'flex';
+              driverBadge.textContent = activeDriverTasks;
+            } else {
+              driverBadge.style.display = 'none';
+            }
           } else {
             driverBadge.style.display = 'none';
           }
@@ -3451,16 +3445,12 @@
          ═══════════════════════════════════════════════════════════════════════ */
       renderDriverTasksTab(container) {
         const u = this.getCurrentUser();
-        const isDriver = u.role === 'Driver';
         const isApprover = u.role === 'Approver';
         
         // Filter bookings that have a driver assigned
         let tasks = this.data.bookings.filter(b => b.needDriver && b.driverId && b.status !== 'Rejected');
         
-        // If current user is a specific driver, show their tasks by default
-        if (isDriver && u.driverId) {
-          tasks = tasks.filter(b => b.driverId === u.driverId);
-        } else if (this.state.driverSelectedId && this.state.driverSelectedId !== 'all') {
+        if (this.state.driverSelectedId && this.state.driverSelectedId !== 'all') {
           tasks = tasks.filter(b => b.driverId === this.state.driverSelectedId);
         }
 
@@ -3474,59 +3464,43 @@
 
         tasks.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 
-        const activeCount = this.data.bookings.filter(b => b.needDriver && b.driverId && b.taskStatus !== 'Completed' && (!isDriver || b.driverId === u.driverId)).length;
-        const completedCount = this.data.bookings.filter(b => b.needDriver && b.driverId && b.taskStatus === 'Completed' && (!isDriver || b.driverId === u.driverId)).length;
+        const activeCount = this.data.bookings.filter(b => b.needDriver && b.driverId && b.taskStatus !== 'Completed').length;
+        const completedCount = this.data.bookings.filter(b => b.needDriver && b.driverId && b.taskStatus === 'Completed').length;
 
         container.innerHTML = `
           <!-- Header zone -->
           <div style="padding:4px 14px 10px; display:flex; justify-content:space-between; align-items:flex-start;">
             <div>
               <h2 style="font-size:16px; font-weight:800; color:var(--text); display:flex; align-items:center; gap:6px;">
-                <span>${isDriver ? 'My Driving Tasks' : 'Driver Mission Board'}</span>
+                <span>Driver Mission Board</span>
                 <span class="status-badge" style="background:var(--c-primary-tint); color:var(--c-primary-dk); font-size:10px; border:1px solid rgba(var(--c-primary-rgb),0.2);">
                   ${activeCount} Active
                 </span>
                 ${isApprover ? '<span class="status-badge" style="background:#fffbeb; color:#b45309; border:1px solid #fde68a; font-size:10px;">👁️ View Only</span>' : ''}
               </h2>
               <p style="font-size:11.5px; color:var(--text-secondary); margin-top:2px;">
-                ${isDriver ? `Logged in as <strong>${u.name}</strong> · View destinations &amp; complete trips` : isApprover ? `Logged in as <strong>${u.name}</strong> (Approver) · <em>Tasks tab is View-Only</em>` : 'Fleet driver assignments, destinations &amp; status'}
+                ${isApprover ? `Logged in as <strong>${u.name}</strong> (Approver) · <em>Tasks tab is View-Only</em>` : `Logged in as <strong>${u.name}</strong> (${u.role}) · Oversee fleet driver assignments &amp; trips`}
               </p>
             </div>
           </div>
 
-          <!-- Driver Persona Switcher Banner (if not logged in as driver) -->
-          ${!isDriver ? `
-            <div style="margin:0 14px 12px; background:linear-gradient(135deg, rgba(25,118,210,0.08) 0%, rgba(13,71,161,0.04) 100%); border:1px solid rgba(25,118,210,0.22); border-radius:var(--r-lg); padding:10px 12px;">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                <span style="font-size:11px; font-weight:800; color:var(--c-primary); text-transform:uppercase; letter-spacing:0.5px;">🚗 Driver Persona Testing</span>
-                <span style="font-size:10.5px; color:var(--text-muted);">Current: ${u.name}</span>
-              </div>
-              <div style="display:flex; gap:6px; overflow-x:auto;">
-                <button class="chip-btn ${this.state.driverSelectedId === 'all' ? 'active' : ''}" style="height:28px; font-size:10.5px;" onclick="app.setDriverTaskFilterSelect('all')">
-                  All Drivers
-                </button>
-                <button class="chip-btn ${this.state.driverSelectedId === 'd1' ? 'active' : ''}" style="height:28px; font-size:10.5px;" onclick="app.switchUser('u5')">
-                  👤 Rithy Kong (Driver)
-                </button>
-                <button class="chip-btn ${this.state.driverSelectedId === 'd2' ? 'active' : ''}" style="height:28px; font-size:10.5px;" onclick="app.switchUser('u6')">
-                  👤 Bona Sam (Driver)
-                </button>
-              </div>
+          <!-- Driver Filter Banner -->
+          <div style="margin:0 14px 12px; background:linear-gradient(135deg, rgba(25,118,210,0.08) 0%, rgba(13,71,161,0.04) 100%); border:1px solid rgba(25,118,210,0.22); border-radius:var(--r-lg); padding:10px 12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="font-size:11px; font-weight:800; color:var(--c-primary); text-transform:uppercase; letter-spacing:0.5px;">🚗 Filter by Assigned Driver</span>
+              <span style="font-size:10.5px; color:var(--text-muted);">${u.name} (${u.role})</span>
             </div>
-          ` : `
-            <div style="margin:0 14px 12px; background:var(--c-success-bg); border:1px solid rgba(46,125,50,0.22); border-radius:var(--r-lg); padding:9px 12px; display:flex; justify-content:space-between; align-items:center;">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <span style="font-size:16px;">🚗</span>
-                <div>
-                  <div style="font-weight:800; font-size:12.5px; color:var(--c-success-text);">Driver Mode: ${u.name}</div>
-                  <div style="font-size:10.5px; color:var(--c-success-text); opacity:0.85;">Phone: ${u.phone || '012 889 001'} · Ready for dispatch</div>
-                </div>
-              </div>
-              <button class="chip-btn" style="height:26px; font-size:10.5px; background:#fff;" onclick="app.switchUser('u4')">
-                Switch Approver
+            <div style="display:flex; gap:6px; overflow-x:auto;">
+              <button class="chip-btn ${this.state.driverSelectedId === 'all' || !this.state.driverSelectedId ? 'active' : ''}" style="height:28px; font-size:10.5px;" onclick="app.setDriverTaskFilterSelect('all')">
+                All Drivers
               </button>
+              ${this.data.drivers.map(d => `
+                <button class="chip-btn ${this.state.driverSelectedId === d.id ? 'active' : ''}" style="height:28px; font-size:10.5px;" onclick="app.setDriverTaskFilterSelect('${d.id}')">
+                  👤 ${d.name}
+                </button>
+              `).join('')}
             </div>
-          `}
+          </div>
 
           <!-- Status Filter Tabs -->
           <div class="scroll-chips-row" style="padding:0 14px; margin-bottom:12px;">
@@ -5418,16 +5392,12 @@
             </div>
             <div style="display:flex; flex-direction:column; gap:8px;">
               ${this.data.users.map(usr => {
-                const isDriverUsr = usr.role === 'Driver';
                 const isApproverUsr = usr.role === 'Approver';
                 const isAdminUsr = usr.role === 'Admin';
                 const isGeneralUsr = usr.role === 'Employee';
-                const activeTripsForDriver = isDriverUsr ? this.data.bookings.filter(b => b.driverId === usr.driverId && b.taskStatus !== 'Completed').length : 0;
 
                 const navAccessText = isGeneralUsr 
                   ? 'Nav: Vehicles & My Bookings' 
-                  : isDriverUsr 
-                  ? 'Nav: Vehicles, My Bookings & Tasks' 
                   : isApproverUsr
                   ? 'Nav: All Tabs (Tasks: View Only)'
                   : 'Nav: All Tabs (Full Access)';
@@ -5435,21 +5405,19 @@
                 return `
                   <div style="display:flex; align-items:center; justify-content:space-between; padding:12px; border-radius:var(--r-lg); border:1.5px solid ${usr.id === this.state.currentUser ? 'var(--c-primary)' : 'var(--border)'}; background:${usr.id === this.state.currentUser ? 'var(--c-primary-tint)' : 'var(--card-alt)'}; cursor:pointer;" onclick="app.switchUser('${usr.id}')">
                     <div style="display:flex; align-items:center; gap:10px;">
-                      <span class="role-avatar-round" style="background:${isDriverUsr ? '#15803d' : isApproverUsr ? '#b45309' : isAdminUsr ? '#875a7b' : 'var(--c-primary)'}; color:#fff; width:34px; height:34px; font-size:12px;">${usr.initials}</span>
+                      <span class="role-avatar-round" style="background:${isApproverUsr ? '#b45309' : isAdminUsr ? '#875a7b' : 'var(--c-primary)'}; color:#fff; width:34px; height:34px; font-size:12px;">${usr.initials}</span>
                       <div>
                         <div style="font-weight:800; font-size:13.5px; color:var(--text); display:flex; align-items:center; gap:6px;">
                           <span>${usr.name}</span>
                           ${isGeneralUsr ? '<span class="status-badge" style="font-size:9.5px; padding:2px 6px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe;">👤 General User</span>' : ''}
-                          ${isDriverUsr ? '<span class="status-badge" style="font-size:9.5px; padding:2px 6px; background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0;">🚗 Driver</span>' : ''}
                           ${isApproverUsr ? '<span class="status-badge" style="font-size:9.5px; padding:2px 6px; background:#fffbeb; color:#b45309; border:1px solid #fde68a;">🛡️ Approver</span>' : ''}
                           ${isAdminUsr ? '<span class="status-badge" style="font-size:9.5px; padding:2px 6px; background:#fbf5f9; color:#875a7b; border:1px solid #e5d7e2;">👑 Administrator</span>' : ''}
                         </div>
                         <div style="font-size:11px; color:var(--text-secondary);">
                           ${usr.dept} · <strong>${isGeneralUsr ? 'General User' : usr.role}</strong>
-                          ${isDriverUsr ? ` · <span style="color:var(--c-primary); font-weight:700;">${activeTripsForDriver ? `${activeTripsForDriver} Active Task(s)` : 'Available'}</span>` : ''}
                         </div>
                         <div style="font-size:10.5px; color:var(--text-muted); margin-top:3px; display:flex; align-items:center; gap:5px;">
-                          <span style="display:inline-block; width:5px; height:5px; border-radius:50%; background:${isGeneralUsr ? '#3b82f6' : isDriverUsr ? '#10b981' : '#875a7b'};"></span>
+                          <span style="display:inline-block; width:5px; height:5px; border-radius:50%; background:${isGeneralUsr ? '#3b82f6' : '#875a7b'};"></span>
                           <span>${navAccessText}</span>
                         </div>
                       </div>
@@ -5471,10 +5439,6 @@
                   <span class="status-badge" style="font-size:10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe;">Vehicles &amp; My Bookings</span>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-bottom:1px solid var(--border-subtle);">
-                  <span><strong>Driver</strong></span>
-                  <span class="status-badge" style="font-size:10px; background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0;">Vehicles, My Bookings &amp; Tasks</span>
-                </div>
-                <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-bottom:1px solid var(--border-subtle);">
                   <span><strong>Approver</strong></span>
                   <span class="status-badge" style="font-size:10px; background:#fffbeb; color:#b45309; border:1px solid #fde68a;">All Tabs (Tasks: View Only)</span>
                 </div>
@@ -5493,10 +5457,7 @@
         this.updateHeaderUI();
         this.closeSheet('profileSheetOverlay');
         const u = this.getCurrentUser();
-        if (u.role === 'Driver') {
-          this.showToast(`Switched account to Driver: ${u.name}. Nav: Vehicles, My Bookings & Tasks`, 'info');
-          this.switchTab('driver');
-        } else if (u.role === 'Approver') {
+        if (u.role === 'Approver') {
           this.showToast(`Switched account to Approver: ${u.name}. Tasks tab is View-Only.`, 'info');
           if (!this.isTabAllowed(u.role, this.state.currentTab)) {
             this.switchTab('cars');
