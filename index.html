@@ -572,10 +572,11 @@
       position: relative;
       display: flex;
       align-items: center;
+      z-index: 35;
     }
     .search-icon-svg {
       position: absolute;
-      left: 12px;
+      left: 14px;
       color: var(--text-muted);
       pointer-events: none;
       transition: color 0.2s;
@@ -585,21 +586,167 @@
     }
     .ppwsa-search-field {
       width: 100%;
-      height: 40px;
-      padding: 0 12px 0 36px;
-      border-radius: var(--r-md);
-      border: 1.5px solid var(--border);
+      height: 42px;
+      padding: 0 34px 0 40px;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(142, 75, 110, 0.42);
       background: var(--card-alt);
       color: var(--text);
-      font-size: 12.5px;
+      font-size: 13px;
       font-family: inherit;
       outline: none;
-      transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .ppwsa-search-field:focus {
       border-color: var(--c-primary);
       background: var(--card);
       box-shadow: 0 0 0 3.5px var(--c-primary-tint);
+    }
+    .search-clear-btn {
+      position: absolute;
+      right: 12px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: none;
+      background: var(--border);
+      color: var(--text-muted);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.15s;
+    }
+    .search-clear-btn.show {
+      display: flex;
+    }
+    .search-clear-btn:hover {
+      background: var(--c-primary);
+      color: #fff;
+    }
+    .smart-search-tags {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 8px 2px 2px;
+      scrollbar-width: none;
+    }
+    .smart-search-tags::-webkit-scrollbar { display: none; }
+    .smart-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      background: var(--card-alt);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.18s ease;
+    }
+    .smart-tag:hover {
+      color: var(--c-primary);
+      border-color: var(--c-primary);
+    }
+    .smart-tag.active {
+      background: var(--c-primary-tint);
+      color: var(--c-primary);
+      border-color: var(--c-primary);
+      box-shadow: 0 0 0 1px var(--c-primary);
+    }
+
+    /* Smart search interactive dropdown */
+    .smart-search-dropdown {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0,0,0,0.06);
+      max-height: 320px;
+      overflow-y: auto;
+      display: none;
+      z-index: 100;
+      padding: 6px 0;
+      animation: smartDropdownIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .smart-search-dropdown.open {
+      display: block;
+    }
+    @keyframes smartDropdownIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .smart-dropdown-header {
+      padding: 6px 14px 4px;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .smart-dropdown-item {
+      padding: 9px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    .smart-dropdown-item:last-child {
+      border-bottom: none;
+    }
+    .smart-dropdown-item:hover, .smart-dropdown-item:active {
+      background: var(--card-alt);
+    }
+    .smart-dropdown-thumb {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--r-sm);
+      object-fit: cover;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .smart-dropdown-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .smart-dropdown-name {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .smart-dropdown-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2px;
+    }
+    .search-highlight {
+      background: rgba(142, 75, 110, 0.16);
+      color: var(--c-primary);
+      font-weight: 700;
+      padding: 0 2px;
+      border-radius: 2px;
     }
 
     /* ═══════════════════════════════════════════════════════════════════════
@@ -813,14 +960,14 @@
       margin-bottom: 12px;
     }
     .slot-notice-box.open {
-      background: var(--c-success-bg);
+      background: transparent;
       color: var(--c-success-text);
-      border: 1px solid rgba(46, 125, 50, 0.2);
+      border: 1px solid rgba(46, 125, 50, 0.3);
     }
     .slot-notice-box.busy {
-      background: var(--c-danger-bg);
+      background: transparent;
       color: var(--c-danger-text);
-      border: 1px solid rgba(198, 40, 40, 0.2);
+      border: 1px solid rgba(198, 40, 40, 0.25);
     }
 
     .btn-ppwsa-primary {
@@ -1574,7 +1721,7 @@
     .ppwsa-date-input,
     .ppwsa-time-input {
       color-scheme: light;
-      cursor: pointer;
+      cursor: text;
     }
     [data-theme="dark"] .ppwsa-input[type="date"],
     [data-theme="dark"] .ppwsa-input[type="time"],
@@ -1625,6 +1772,17 @@
       border-color: var(--c-primary);
       box-shadow: 0 0 0 3px var(--c-primary-tint);
       background: var(--card);
+    }
+    .input-field-error {
+      border-color: var(--c-danger) !important;
+      background: rgba(198, 40, 40, 0.04) !important;
+      box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.18) !important;
+      animation: fieldShake 0.3s ease-in-out;
+    }
+    @keyframes fieldShake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-4px); }
+      40%, 80% { transform: translateX(4px); }
     }
 
     .form-grid-2 {
@@ -1844,7 +2002,7 @@
         <button class="sheet-close-round" onclick="app.closeSheet('bookingSheetOverlay')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
 
-      <form class="sheet-scroll-body" id="bookingForm" onsubmit="app.handleBookingSubmit(event)">
+      <form class="sheet-scroll-body" id="bookingForm" novalidate onsubmit="app.handleBookingSubmit(event)">
         <input type="hidden" id="mBookCarId" />
 
         <!-- Selected Vehicle Summary Card -->
@@ -1857,22 +2015,22 @@
         <div class="form-grid-2">
           <div class="form-group-block">
             <label class="form-label-bold">Start Date <span class="req-mark">*</span></label>
-            <input type="date" class="ppwsa-input" id="mBookStartDate" required oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" onclick="this.showPicker &amp;&amp; this.showPicker()" />
+            <input type="date" class="ppwsa-input" id="mBookStartDate" required oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" />
           </div>
           <div class="form-group-block">
             <label class="form-label-bold">Start Time <span class="req-mark">*</span></label>
-            <input type="time" class="ppwsa-input" id="mBookStartTime" required value="09:00" oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" onclick="this.showPicker &amp;&amp; this.showPicker()" />
+            <input type="time" class="ppwsa-input" id="mBookStartTime" required value="09:00" oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" />
           </div>
         </div>
 
         <div class="form-grid-2">
           <div class="form-group-block">
             <label class="form-label-bold">End Date <span class="req-mark">*</span></label>
-            <input type="date" class="ppwsa-input" id="mBookEndDate" required oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" onclick="this.showPicker &amp;&amp; this.showPicker()" />
+            <input type="date" class="ppwsa-input" id="mBookEndDate" required oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" />
           </div>
           <div class="form-group-block">
             <label class="form-label-bold">End Time <span class="req-mark">*</span></label>
-            <input type="time" class="ppwsa-input" id="mBookEndTime" required value="12:00" oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" onclick="this.showPicker &amp;&amp; this.showPicker()" />
+            <input type="time" class="ppwsa-input" id="mBookEndTime" required value="12:00" oninput="app.onBookingTimeChange()" onchange="app.onBookingTimeChange()" />
           </div>
         </div>
 
@@ -1882,27 +2040,30 @@
             <span>Booking Purpose <span class="req-mark">*</span></span>
             <span style="font-size:10px; color:var(--text-muted);" id="mPurposeCharCount">0 / 250</span>
           </div>
-          <textarea class="ppwsa-textarea" id="mBookPurpose" maxlength="250" required placeholder="e.g. Inspect water booster station in Chbar Ampov" style="height:68px;" oninput="document.getElementById('mPurposeCharCount').textContent = this.value.length + ' / 250'"></textarea>
+          <textarea class="ppwsa-textarea" id="mBookPurpose" maxlength="250" placeholder="e.g. Inspect water booster station in Chbar Ampov" style="height:68px;" oninput="document.getElementById('mPurposeCharCount').textContent = this.value.length + ' / 250'; const err = document.getElementById('mBookPurposeError'); if (err) err.style.display = 'none'; this.classList.remove('input-field-error');"></textarea>
+          <div id="mBookPurposeError" style="display:none; color:var(--c-danger); font-size:11px; font-weight:600; margin-top:5px; align-items:center; gap:5px;">
+            <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Please enter your booking purpose.
+          </div>
         </div>
 
         <!-- Driver Option -->
         <div class="form-group-block">
           <label class="form-label-bold">Need a Corporate Driver? <span class="req-mark">*</span></label>
           <div class="driver-selector-grid">
-            <div class="driver-choice-box active" id="mOptDriverNo" onclick="app.setDriverChoice(false)">
-              <input type="radio" name="mDriverChoice" checked />
+            <label class="driver-choice-box active" id="mOptDriverNo" onclick="app.setDriverChoice(false)">
+              <input type="radio" name="mDriverChoice" id="mDriverChoiceNo" value="false" checked onchange="app.setDriverChoice(false)" />
               <div>
                 <div style="font-size:12px; font-weight:700;">Self-drive</div>
                 <div style="font-size:10.5px; color:var(--text-muted);">I will drive myself</div>
               </div>
-            </div>
-            <div class="driver-choice-box" id="mOptDriverYes" onclick="app.setDriverChoice(true)">
-              <input type="radio" name="mDriverChoice" />
+            </label>
+            <label class="driver-choice-box" id="mOptDriverYes" onclick="app.setDriverChoice(true)">
+              <input type="radio" name="mDriverChoice" id="mDriverChoiceYes" value="true" onchange="app.setDriverChoice(true)" />
               <div>
                 <div style="font-size:12px; font-weight:700;">Need a driver</div>
                 <div style="font-size:10.5px; color:var(--text-muted);">Fleet will allocate</div>
               </div>
-            </div>
+            </label>
           </div>
         </div>
 
@@ -2235,7 +2396,7 @@
         nav_admin: 'Admin',
         today: 'Today',
         tomorrow: 'Tomorrow',
-        all_day: 'All Day',
+        all_day: 'Full Day',
         morning: 'Morning (08:00–12:00)',
         afternoon: 'Afternoon (13:00–17:00)',
         all_types: 'All Types',
@@ -2488,6 +2649,10 @@
             this.data.bookings.forEach(b => {
               if (b.needDriver && b.driverId && !b.taskStatus) {
                 b.taskStatus = b.status === 'Completed' ? 'Completed' : 'Assigned';
+              }
+              // Ensure booking where user specified driver is marked as needDriver: true
+              if (b.id === 'BK-0006' || (b.purpose && b.purpose.trim().toLowerCase() === 'driver')) {
+                b.needDriver = true;
               }
             });
             // Ensure BK-0001 belongs to u1 (Sokha Chan) and is active for today if not yet completed
@@ -2743,10 +2908,14 @@
               </div>
             ` : ''}
 
-            <!-- Search box -->
-            <div class="search-input-wrap">
+            <!-- Search box with clear button & smart dropdown -->
+            <div class="search-input-wrap" id="mDashSearchWrap">
               <svg class="search-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input type="text" class="ppwsa-search-field" placeholder="${this.t('search_hint')}" value="${this.state.searchQuery}" oninput="app.onDashSearch(this.value)" />
+              <input type="text" class="ppwsa-search-field" id="mDashSearchInput" placeholder="Search model or license plate..." value="${this.state.searchQuery}" onfocus="app.openSmartSearchDropdown()" onclick="app.openSmartSearchDropdown()" oninput="app.onDashSearch(this.value)" autocomplete="off" />
+              <button type="button" class="search-clear-btn ${this.state.searchQuery ? 'show' : ''}" id="mDashSearchClear" onclick="app.clearDashSearch()" title="Clear search">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+              <div class="smart-search-dropdown" id="mSmartSearchDropdown"></div>
             </div>
           </div>
 
@@ -2806,25 +2975,269 @@
         this.renderCurrentTab();
       },
 
+      highlightMatch(text, query) {
+        if (!query || !text) return text;
+        const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
+        if (!tokens.length) return text;
+        let res = String(text);
+        tokens.forEach(tok => {
+          const safe = tok.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+          const re = new RegExp(`(${safe})`, 'gi');
+          res = res.replace(re, '<mark class="search-highlight">$1</mark>');
+        });
+        return res;
+      },
+
+      openSmartSearchDropdown() {
+        const dd = document.getElementById('mSmartSearchDropdown');
+        if (!dd) return;
+        this.renderSmartDropdownContent();
+        dd.classList.add('open');
+      },
+
+      closeSmartSearchDropdown() {
+        const dd = document.getElementById('mSmartSearchDropdown');
+        if (dd) dd.classList.remove('open');
+      },
+
+      renderSmartDropdownContent() {
+        const dd = document.getElementById('mSmartSearchDropdown');
+        if (!dd) return;
+        const query = (this.state.searchQuery || '').trim().toLowerCase();
+        const dateStr = this.state.selectedDate;
+
+        if (!query) {
+          const availableCount = this.data.cars.filter(c => {
+            const isM = this.isCarInMaintenance(c, dateStr);
+            const isBooked = this.data.bookings.some(b => b.carId === c.id && b.startDate === dateStr && b.status === 'Approved');
+            return !isM && !isBooked;
+          }).length;
+
+          dd.innerHTML = `
+            <div class="smart-dropdown-header">
+              <span>Quick Suggestions</span>
+              <span>${this.data.cars.length} Fleet</span>
+            </div>
+            <div class="smart-dropdown-item" onclick="app.selectSmartPreset('available')">
+              <div style="width:32px; height:32px; border-radius:50%; background:#dcfce7; color:#15803d; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="smart-dropdown-info">
+                <div class="smart-dropdown-name">Available Today</div>
+                <div class="smart-dropdown-meta">${availableCount} vehicles ready to book immediately</div>
+              </div>
+            </div>
+            <div class="smart-dropdown-item" onclick="app.selectSmartPreset('7 seats')">
+              <div style="width:32px; height:32px; border-radius:50%; background:#e0e7ff; color:#4338ca; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="smart-dropdown-info">
+                <div class="smart-dropdown-name">7+ Passenger Capacity</div>
+                <div class="smart-dropdown-meta">Large SUVs &amp; corporate vans</div>
+              </div>
+            </div>
+            <div class="smart-dropdown-item" onclick="app.selectSmartPreset('suv')">
+              <div style="width:32px; height:32px; border-radius:50%; background:#fef3c7; color:#b45309; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              </div>
+              <div class="smart-dropdown-info">
+                <div class="smart-dropdown-name">SUV Models</div>
+                <div class="smart-dropdown-meta">Fortuner, CX-5, Everest</div>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        const filtered = this.getFilteredCars();
+        if (!filtered.length) {
+          dd.innerHTML = `
+            <div style="padding:16px 14px; text-align:center; color:var(--text-muted); font-size:12px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin-bottom:4px; opacity:0.6;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <div>No vehicles found for "<strong>${query}</strong>"</div>
+              <button type="button" class="chip-btn" style="margin-top:8px; height:26px; font-size:11px;" onclick="app.clearDashSearch()">Reset Search</button>
+            </div>
+          `;
+          return;
+        }
+
+        dd.innerHTML = `
+          <div class="smart-dropdown-header">
+            <span>Matching Fleet (${filtered.length})</span>
+            <span>Tap to focus</span>
+          </div>
+          ${filtered.map(car => {
+            const isM = this.isCarInMaintenance(car, dateStr);
+            const isBooked = this.data.bookings.some(b => b.carId === car.id && b.startDate === dateStr && b.status === 'Approved');
+            let statusBadge = isM ? '<span style="color:#b45309; font-weight:700; font-size:10px;">Maintenance</span>' : (isBooked ? '<span style="color:#c62828; font-weight:700; font-size:10px;">Reserved</span>' : '<span style="color:#15803d; font-weight:700; font-size:10px;">Available</span>');
+
+            return `
+              <div class="smart-dropdown-item" onclick="app.selectSmartCar('${car.id}')">
+                <img src="${getCarImage(car)}" alt="${car.name}" class="smart-dropdown-thumb" />
+                <div class="smart-dropdown-info">
+                  <div class="smart-dropdown-name">
+                    <span>${this.highlightMatch(car.name, query)}</span>
+                    <span class="vehicle-plate-pill" style="font-size:9.5px; padding:1px 5px;">${this.highlightMatch(car.plate, query)}</span>
+                  </div>
+                  <div class="smart-dropdown-meta">
+                    <span>${car.type}</span> • <span>${car.seats} Seats</span> • ${statusBadge}
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        `;
+      },
+
+      selectSmartCar(carId) {
+        const car = this.data.cars.find(c => c.id === carId);
+        if (!car) return;
+        this.state.searchQuery = car.name;
+        const input = document.getElementById('mDashSearchInput');
+        if (input) input.value = car.name;
+        const clearBtn = document.getElementById('mDashSearchClear');
+        if (clearBtn) clearBtn.classList.add('show');
+        this.closeSmartSearchDropdown();
+        this.updateViewAfterSearch();
+        setTimeout(() => {
+          const el = document.getElementById(`car-card-${car.id}`);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            el.style.transition = 'box-shadow 0.3s ease, transform 0.3s ease';
+            el.style.boxShadow = '0 0 0 3px var(--c-primary)';
+            el.style.transform = 'scale(1.02)';
+            setTimeout(() => {
+              el.style.boxShadow = '';
+              el.style.transform = '';
+            }, 1200);
+          }
+        }, 80);
+      },
+
+      selectSmartPreset(preset) {
+        this.state.searchQuery = preset;
+        const input = document.getElementById('mDashSearchInput');
+        if (input) input.value = preset;
+        const clearBtn = document.getElementById('mDashSearchClear');
+        if (clearBtn) clearBtn.classList.add('show');
+        this.closeSmartSearchDropdown();
+        this.renderCurrentTab();
+      },
+
       onDashSearch(val) {
         this.state.searchQuery = val.toLowerCase().trim();
+        const clearBtn = document.getElementById('mDashSearchClear');
+        if (clearBtn) {
+          if (val.trim()) clearBtn.classList.add('show');
+          else clearBtn.classList.remove('show');
+        }
+        this.renderSmartDropdownContent();
+        this.updateViewAfterSearch();
+      },
+
+      clearDashSearch() {
+        this.state.searchQuery = '';
+        const input = document.getElementById('mDashSearchInput');
+        if (input) {
+          input.value = '';
+          input.focus();
+        }
+        const clearBtn = document.getElementById('mDashSearchClear');
+        if (clearBtn) clearBtn.classList.remove('show');
+        this.closeSmartSearchDropdown();
+        this.renderCurrentTab();
+      },
+
+      applySmartTag(tag) {
+        this.state.searchQuery = (this.state.searchQuery === tag) ? '' : tag;
+        const input = document.getElementById('mDashSearchInput');
+        if (input) input.value = this.state.searchQuery;
+        const clearBtn = document.getElementById('mDashSearchClear');
+        if (clearBtn) {
+          if (this.state.searchQuery) clearBtn.classList.add('show');
+          else clearBtn.classList.remove('show');
+        }
+        this.closeSmartSearchDropdown();
+        this.renderCurrentTab();
+      },
+
+      updateViewAfterSearch() {
         const body = document.getElementById('mViewBody');
         if (body) {
           body.innerHTML = this.state.viewMode === 'cards'
             ? `<div class="cards-stack" id="mCarCardsList">${this.renderCarCardsHTML()}</div>`
             : this.renderTimelineHTML();
         }
+        const tagContainer = document.getElementById('mSmartSearchTags');
+        if (tagContainer) {
+          const q = this.state.searchQuery;
+          tagContainer.querySelectorAll('.smart-tag').forEach(btn => {
+            const tag = btn.getAttribute('data-tag');
+            if (tag && q === tag) btn.classList.add('active');
+            else btn.classList.remove('active');
+          });
+        }
       },
 
       getFilteredCars() {
+        const query = (this.state.searchQuery || '').toLowerCase().trim();
+        const dateStr = this.state.selectedDate;
+
         return this.data.cars.filter(c => {
           if (this.state.filterType !== 'all' && c.type !== this.state.filterType) return false;
-          if (this.state.searchQuery) {
-            const m1 = c.name.toLowerCase().includes(this.state.searchQuery);
-            const m2 = c.plate.toLowerCase().includes(this.state.searchQuery);
-            if (!m1 && !m2) return false;
-          }
-          return true;
+          if (!query) return true;
+
+          const cleanPlate = (c.plate || '').toLowerCase().replace(/[\s\-_]/g, '');
+          const cleanName = (c.name || '').toLowerCase();
+          const cleanType = (c.type || '').toLowerCase();
+          const seatsStr = String(c.seats || '');
+
+          const isMaint = this.isCarInMaintenance(c, dateStr);
+          const dayBookings = this.data.bookings.filter(b => 
+            b.carId === c.id && 
+            b.startDate === dateStr && 
+            (b.status === 'Approved' || (b.status === 'Completed' && b.returnedEarly))
+          );
+          const hasBookings = dayBookings.length > 0;
+          const isAvailable = !isMaint && (!hasBookings || dayBookings.some(b => b.returnedEarly));
+
+          const tokens = query.split(/\s+/).filter(Boolean);
+
+          return tokens.every(token => {
+            const cleanToken = token.replace(/[\s\-_]/g, '');
+
+            // 1. Model / Brand
+            if (cleanName.includes(token)) return true;
+
+            // 2. License Plate (exact or normalized without hyphens)
+            if (cleanPlate.includes(cleanToken) || c.plate.toLowerCase().includes(token)) return true;
+
+            // 3. Body Type (SUV, Sedan, Pickup, Van)
+            if (cleanType.includes(token)) return true;
+
+            // 4. Seats capacity
+            if (seatsStr === token || token === `${seatsStr}seats` || token === `${seatsStr}pax` || (token === 'seats' && c.seats)) return true;
+            if ((token === '7+' || token === '7seats' || token === '7-seater') && c.seats >= 7) return true;
+
+            // 5. Status keywords
+            if ((token === 'available' || token === 'free' || token === 'open' || token === 'ទំនេរ') && isAvailable) return true;
+            if ((token === 'booked' || token === 'busy' || token === 'reserved') && hasBookings) return true;
+            if ((token === 'maint' || token === 'maintenance' || token === 'service') && isMaint) return true;
+
+            // 6. Matching by booked driver, requester, or trip purpose on selected day
+            const matchedBooking = dayBookings.some(b => {
+              const u = this.data.users.find(x => x.id === b.requesterId);
+              const d = b.driverId ? this.data.drivers.find(x => x.id === b.driverId) : null;
+              const pMatch = b.purpose && b.purpose.toLowerCase().includes(token);
+              const dMatch = b.destination && b.destination.toLowerCase().includes(token);
+              const uMatch = u && u.name.toLowerCase().includes(token);
+              const drMatch = d && d.name.toLowerCase().includes(token);
+              return pMatch || dMatch || uMatch || drMatch;
+            });
+            if (matchedBooking) return true;
+
+            return false;
+          });
         });
       },
 
@@ -2840,9 +3253,11 @@
 
         if (!filtered.length) {
           return `
-            <div style="text-align:center; padding:36px 14px; background:var(--card); border-radius:var(--r-xl); border:1px solid var(--border); color:var(--text-secondary);">
-              <p style="font-weight:700; font-size:14px;">No vehicles match your filter</p>
-              <p style="font-size:11.5px; margin-top:4px; color:var(--text-muted);">Try changing date, slot, or clear search criteria.</p>
+            <div style="text-align:center; padding:32px 14px; background:var(--card); border-radius:var(--r-xl); border:1px solid var(--border); color:var(--text-secondary);">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.8" style="margin-bottom:8px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              <p style="font-weight:700; font-size:14px; color:var(--text);">No vehicles found ${this.state.searchQuery ? `for "${this.state.searchQuery}"` : ''}</p>
+              <p style="font-size:11.5px; margin-top:4px; color:var(--text-muted);">Try searching model (Toyota), plate (01-228), seats (7 seats), or status (available).</p>
+              ${this.state.searchQuery ? `<button type="button" class="chip-btn" style="margin-top:12px; height:32px; font-size:11.5px;" onclick="app.clearDashSearch()">Clear Search</button>` : ''}
             </div>
           `;
         }
@@ -2894,12 +3309,34 @@
             prefillStart = remainingStartTime;
             prefillEnd = slot.end;
             reservedHtml = `
-              <div class="slot-notice-box open" style="background:#f0fdf4; border-color:#86efac; color:#15803d;">
-                <strong>Schedule on ${this.state.selectedDate}:</strong>
-                ${dayApproved.map(b => {
-                  const u = this.data.users.find(x => x.id === b.requesterId);
-                  return `<div style="margin-top:2px;">• <strong>${b.startTime}–${b.endTime}</strong> by ${u ? u.name : 'Staff'} <span style="font-weight:700; color:#16a34a;">(Returned early at ${b.endTime} · Available from ${b.endTime} onward!)</span></div>`;
-                }).join('')}
+              <div class="slot-notice-box open" style="background:transparent; border:1px solid rgba(46,125,50,0.3); color:var(--c-success-text);">
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:4px;">
+                  <div style="display:flex; align-items:center; gap:5px; font-weight:700; font-size:11.5px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span>Schedule on ${this.state.selectedDate}</span>
+                  </div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:5px;">
+                  ${dayApproved.map((b, i) => {
+                    const u = this.data.users.find(x => x.id === b.requesterId);
+                    return `
+                      <div style="display:flex; flex-direction:column; gap:2px; ${i > 0 ? 'border-top:1px dashed rgba(46,125,50,0.2); padding-top:5px;' : ''}">
+                        <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; flex-wrap:wrap;">
+                          <span style="display:inline-flex; align-items:center; gap:4px; font-weight:700; font-size:11px; font-variant-numeric:tabular-nums;">
+                            ${b.startTime} – ${b.endTime}
+                            <span style="font-weight:500; font-size:10.5px; opacity:0.85;">by ${u ? u.name : 'Staff'}</span>
+                          </span>
+                          <span style="display:inline-flex; align-items:center; gap:3px; font-size:10px; font-weight:700; color:#15803d;">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Returned Early
+                          </span>
+                        </div>
+                        <div style="font-size:10px; color:#15803d; font-weight:600;">
+                          Available from ${b.endTime} onward!
+                        </div>
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
               </div>
             `;
           } else if (isBookedInSlot) {
@@ -2914,14 +3351,42 @@
 
             reservedHtml = `
               <div class="slot-notice-box busy">
-                <strong>Reserved on ${this.state.selectedDate}:</strong>
-                ${dayApproved.map(b => {
-                  const u = this.data.users.find(x => x.id === b.requesterId);
-                  if (b.returnedEarly) {
-                    return `<div style="margin-top:2px;">• <strong>${b.startTime}–${b.endTime}</strong> by ${u ? u.name : 'Staff'} <span style="color:#16a34a; font-weight:700;">(Returned early at ${b.endTime} · Available now!)</span></div>`;
-                  }
-                  return `<div style="margin-top:2px;">• ${b.startTime}–${b.endTime} by ${u ? u.name : 'Staff'} ("${b.purpose}")</div>`;
-                }).join('')}
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:4px;">
+                  <div style="display:flex; align-items:center; gap:5px; font-weight:700; font-size:11.5px; color:var(--c-danger-text);">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span>Reserved on ${this.state.selectedDate}</span>
+                  </div>
+                  <span style="font-size:10px; font-weight:700; border:1px solid rgba(198,40,40,0.3); color:var(--c-danger-text); padding:1px 6px; border-radius:10px;">${dayApproved.length} ${dayApproved.length === 1 ? 'slot' : 'slots'}</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:5px;">
+                  ${dayApproved.map((b, i) => {
+                    const u = this.data.users.find(x => x.id === b.requesterId);
+                    return `
+                      <div style="display:flex; flex-direction:column; gap:2px; ${i > 0 ? 'border-top:1px dashed rgba(198,40,40,0.2); padding-top:5px;' : ''}">
+                        <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; flex-wrap:wrap;">
+                          <span style="display:inline-flex; align-items:center; gap:4px; font-weight:700; font-size:11px; color:var(--c-danger-text); font-variant-numeric:tabular-nums;">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            ${b.startTime} – ${b.endTime}
+                            <span style="font-weight:500; font-size:10.5px; color:var(--text-muted);">by ${u ? u.name : 'Staff'}</span>
+                          </span>
+                          ${b.returnedEarly ? `
+                            <span style="display:inline-flex; align-items:center; gap:3px; font-size:10px; font-weight:700; color:#15803d;">
+                              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Returned Early
+                            </span>
+                          ` : ''}
+                        </div>
+                        <div style="font-size:11px; color:var(--text-main); font-weight:500; line-height:1.35;">
+                          ${b.purpose}
+                        </div>
+                        ${b.returnedEarly ? `
+                          <div style="font-size:10px; color:#15803d; font-weight:600;">
+                            ↳ Vehicle open from ${b.endTime} onward
+                          </div>
+                        ` : ''}
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
               </div>
             `;
           } else if (!activeApproved.length && earlyReturned.length) {
@@ -2932,12 +3397,34 @@
             prefillStart = latestEnd;
             prefillEnd = '17:00';
             reservedHtml = `
-              <div class="slot-notice-box open" style="background:#f0fdf4; border-color:#86efac; color:#15803d;">
-                <strong>Schedule on ${this.state.selectedDate}:</strong>
-                ${dayApproved.map(b => {
-                  const u = this.data.users.find(x => x.id === b.requesterId);
-                  return `<div style="margin-top:2px;">• <strong>${b.startTime}–${b.endTime}</strong> by ${u ? u.name : 'Staff'} <span style="font-weight:700; color:#16a34a;">(Returned early at ${b.endTime} · Open from ${b.endTime} onward!)</span></div>`;
-                }).join('')}
+              <div class="slot-notice-box open" style="background:transparent; border:1px solid rgba(46,125,50,0.3); color:var(--c-success-text);">
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:4px;">
+                  <div style="display:flex; align-items:center; gap:5px; font-weight:700; font-size:11.5px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span>Schedule on ${this.state.selectedDate}</span>
+                  </div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:5px;">
+                  ${dayApproved.map((b, i) => {
+                    const u = this.data.users.find(x => x.id === b.requesterId);
+                    return `
+                      <div style="display:flex; flex-direction:column; gap:2px; ${i > 0 ? 'border-top:1px dashed rgba(46,125,50,0.2); padding-top:5px;' : ''}">
+                        <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; flex-wrap:wrap;">
+                          <span style="display:inline-flex; align-items:center; gap:4px; font-weight:700; font-size:11px; font-variant-numeric:tabular-nums;">
+                            ${b.startTime} – ${b.endTime}
+                            <span style="font-weight:500; font-size:10.5px; opacity:0.85;">by ${u ? u.name : 'Staff'}</span>
+                          </span>
+                          <span style="display:inline-flex; align-items:center; gap:3px; font-size:10px; font-weight:700; color:#15803d;">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Returned Early
+                          </span>
+                        </div>
+                        <div style="font-size:10px; color:#15803d; font-weight:600;">
+                          Open from ${b.endTime} onward!
+                        </div>
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
               </div>
             `;
           } else {
@@ -2951,11 +3438,11 @@
           }
 
           return `
-            <div class="vehicle-card" style="cursor:pointer;" onclick="if (!event.target.closest('button')) app.openBookingSheet('${car.id}', '${prefillStart}', '${prefillEnd}')" title="Click vehicle to book">
+            <div class="vehicle-card" id="car-card-${car.id}" style="cursor:pointer;" onclick="if (!event.target.closest('button')) app.openBookingSheet('${car.id}', '${prefillStart}', '${prefillEnd}')" title="Click vehicle to book">
               <div class="vehicle-card-header">
                 <div>
-                  <div class="vehicle-title">${car.name}</div>
-                  <span class="vehicle-plate-pill">${car.plate}</span>
+                  <div class="vehicle-title">${this.highlightMatch(car.name, this.state.searchQuery)}</div>
+                  <span class="vehicle-plate-pill">${this.highlightMatch(car.plate, this.state.searchQuery)}</span>
                 </div>
                 <div>${badgeHtml}</div>
               </div>
@@ -3129,14 +3616,9 @@
           .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 
         container.innerHTML = `
-          <div style="padding:4px 14px 12px; display:flex; justify-content:space-between; align-items:center;">
-            <div>
-              <h2 style="font-size:16px; font-weight:800; color:var(--text);">My Bookings</h2>
-              <p style="font-size:11.5px; color:var(--text-secondary);">Track your vehicle bookings &amp; approvals</p>
-            </div>
-            <button class="chip-btn active" style="height:34px; font-size:11px;" onclick="app.switchTab('cars')">
-              + New Booking
-            </button>
+          <div style="padding:4px 14px 12px;">
+            <h2 style="font-size:16px; font-weight:800; color:var(--text);">My Bookings</h2>
+            <p style="font-size:11.5px; color:var(--text-secondary);">Track your vehicle bookings &amp; approvals</p>
           </div>
 
           <!-- Status Filter Tabs -->
@@ -3448,9 +3930,9 @@
                     ${b.destination ? `<div style="font-size:11px; color:var(--c-primary); margin-top:2px;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Destination: ${b.destination}</div>` : ''}
                   </div>
 
-                  <div style="font-size:11.5px; display:flex; justify-content:space-between; color:var(--text-muted); margin-bottom:12px;">
-                    <span>${b.needDriver ? '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> <strong>Driver Needed</strong>' : '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Self-drive'}</span>
-                    <span>${driver ? `Assigned: ${driver.name}` : ''}</span>
+                  <div style="font-size:11.5px; display:flex; justify-content:space-between; align-items:center; color:var(--text-muted); margin-bottom:12px;">
+                    <span>${b.needDriver ? '<span style="color:var(--c-primary); font-weight:700; display:inline-flex; align-items:center; gap:4px;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Need a driver</span>' : '<span style="color:var(--text-muted); display:inline-flex; align-items:center; gap:4px;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Self-drive</span>'}</span>
+                    <span>${driver ? `Assigned: <strong>${driver.name}</strong>` : ''}</span>
                   </div>
 
                   ${b.status === 'Pending' ? `
@@ -3462,19 +3944,7 @@
                         <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Review &amp; Approve
                       </button>
                     </div>
-                  ` : (driver ? `
-                    <div style="display:flex; justify-content:space-between; align-items:center; background:var(--card-alt); padding:8px 10px; border-radius:var(--r-md); border:1px solid var(--border-subtle); margin-top:4px;">
-                      <div>
-                        <div style="font-size:10px; color:var(--text-muted); font-weight:800; text-transform:uppercase;">Driver Dispatch</div>
-                        <div style="font-size:12px; font-weight:700; color:var(--text); margin-top:1px;">
-                          ${driver.name} · <span class="status-badge" style="font-size:10px; padding:2px 8px; ${b.taskStatus === 'Completed' ? 'background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0;' : b.taskStatus === 'In Progress' ? 'background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe;' : 'background:#fff7ed; color:#c2410c; border:1px solid #ffedd5;'}">${b.taskStatus || 'Assigned'}</span>
-                        </div>
-                      </div>
-                      <button class="chip-btn active" style="font-size:11px; height:28px;" onclick="app.viewDriverMission('${b.id}')">
-                        View Driver Task <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                      </button>
-                    </div>
-                  ` : '')}
+                  ` : ''}
                 </div>
               `;
             }).join('')}
@@ -4806,8 +5276,13 @@
         document.getElementById('mBookStartDate').value = targetDate;
         document.getElementById('mBookEndDate').value = targetDate;
         document.getElementById('mBookStartTime').value = prefillStart;
-        document.getElementById('mBookEndTime').value = prefillEnd;
-        document.getElementById('mBookPurpose').value = '';
+        const purposeEl = document.getElementById('mBookPurpose');
+        if (purposeEl) {
+          purposeEl.value = '';
+          purposeEl.classList.remove('input-field-error');
+        }
+        const purposeErr = document.getElementById('mBookPurposeError');
+        if (purposeErr) purposeErr.style.display = 'none';
         if (document.getElementById('mPurposeCharCount')) document.getElementById('mPurposeCharCount').textContent = '0 / 250';
 
         this.setDriverChoice(false);
@@ -5006,16 +5481,48 @@
 
         if (!approved.length) {
           banner.innerHTML = `
-            <div style="font-size:11.5px; color:var(--c-success-text); background:var(--c-success-bg); padding:8px 12px; border-radius:var(--r-md); border:1px solid rgba(46,125,50,0.2);">
-              <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> No reserved bookings on ${dateStr}. Full day is open!
+            <div style="font-size:11.5px; color:var(--c-success-text); background:transparent; padding:8px 12px; border-radius:var(--r-md); border:1px solid rgba(46,125,50,0.3); display:flex; align-items:center; gap:8px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>No bookings on ${dateStr}.</strong> Full day is open for reservation!</span>
             </div>
           `;
         } else {
           banner.innerHTML = `
-            <div style="font-size:11.5px; color:var(--c-danger-text); background:var(--c-danger-bg); padding:8px 12px; border-radius:var(--r-md); border:1px solid rgba(198,40,40,0.2);">
-              <strong>Already reserved slots on ${dateStr}:</strong>
-              <div style="margin-top:2px;">
-                ${approved.map(b => `<div>• ${b.startTime}–${b.endTime} ("${b.purpose}")${b.returnedEarly ? ` <span style="color:#15803d; font-weight:700;">(Returned Early · Open from ${b.endTime} onward)</span>` : ''}</div>`).join('')}
+            <div style="background:transparent; border:1px solid rgba(198,40,40,0.25); border-radius:var(--r-md); padding:10px 12px; display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:6px;">
+                <div style="display:flex; align-items:center; gap:6px; font-weight:700; font-size:12px; color:var(--c-danger-text);">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  <span>Already reserved on ${dateStr}</span>
+                </div>
+                <span style="font-size:10.5px; font-weight:700; border:1px solid rgba(198,40,40,0.3); color:var(--c-danger-text); padding:1px 7px; border-radius:10px;">${approved.length} ${approved.length === 1 ? 'slot' : 'slots'}</span>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                ${approved.map((b, i) => {
+                  const u = this.data.users.find(x => x.id === b.requesterId);
+                  return `
+                  <div style="display:flex; flex-direction:column; gap:3px; ${i > 0 ? 'border-top:1px dashed rgba(198,40,40,0.2); padding-top:6px;' : ''}">
+                    <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+                      <span style="display:inline-flex; align-items:center; gap:5px; font-weight:700; font-size:11.5px; color:var(--c-danger-text); font-variant-numeric:tabular-nums;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        ${b.startTime} – ${b.endTime}
+                        <span style="font-weight:500; font-size:11px; color:var(--text-muted);">by ${u ? u.name : 'Staff'}</span>
+                      </span>
+                      ${b.returnedEarly ? `
+                        <span style="display:inline-flex; align-items:center; gap:3px; font-size:10px; font-weight:700; color:#15803d;">
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Returned Early
+                        </span>
+                      ` : ''}
+                    </div>
+                    <div style="font-size:11.5px; color:var(--text-main); font-weight:500; line-height:1.35;">
+                      ${b.purpose}
+                    </div>
+                    ${b.returnedEarly ? `
+                      <div style="font-size:10.5px; color:#15803d; font-weight:600;">
+                        ↳ Vehicle open from ${b.endTime} onward
+                      </div>
+                    ` : ''}
+                  </div>
+                `;}).join('')}
               </div>
             </div>
           `;
@@ -5023,19 +5530,21 @@
       },
 
       setDriverChoice(need) {
-        this.state.needDriver = need;
+        this.state.needDriver = Boolean(need);
         const noCard = document.getElementById('mOptDriverNo');
         const yesCard = document.getElementById('mOptDriverYes');
+        const noInput = document.getElementById('mDriverChoiceNo') || noCard?.querySelector('input');
+        const yesInput = document.getElementById('mDriverChoiceYes') || yesCard?.querySelector('input');
         if (need) {
-          yesCard.classList.add('active');
-          yesCard.querySelector('input').checked = true;
-          noCard.classList.remove('active');
-          noCard.querySelector('input').checked = false;
+          if (yesCard) yesCard.classList.add('active');
+          if (yesInput) yesInput.checked = true;
+          if (noCard) noCard.classList.remove('active');
+          if (noInput) noInput.checked = false;
         } else {
-          noCard.classList.add('active');
-          noCard.querySelector('input').checked = true;
-          yesCard.classList.remove('active');
-          yesCard.querySelector('input').checked = false;
+          if (noCard) noCard.classList.add('active');
+          if (noInput) noInput.checked = true;
+          if (yesCard) yesCard.classList.remove('active');
+          if (yesInput) yesInput.checked = false;
         }
       },
 
@@ -5050,9 +5559,20 @@
         const dest = document.getElementById('mBookDestination')?.value?.trim() || '';
         const pax = parseInt(document.getElementById('mBookPassengers')?.value) || 1;
 
+        const purposeInput = document.getElementById('mBookPurpose');
+        const purposeErr = document.getElementById('mBookPurposeError');
         if (!purpose) {
+          if (purposeErr) purposeErr.style.display = 'flex';
+          if (purposeInput) {
+            purposeInput.classList.add('input-field-error');
+            purposeInput.focus();
+            purposeInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
           this.showToast('Please specify your booking purpose.', 'error');
           return;
+        } else {
+          if (purposeErr) purposeErr.style.display = 'none';
+          if (purposeInput) purposeInput.classList.remove('input-field-error');
         }
 
         const conflict = this.checkCarConflict(carId, sDate, sTime, eTime);
@@ -5060,6 +5580,11 @@
           this.showToast('Selected time slot conflicts with an approved booking.', 'error');
           return;
         }
+
+        const yesInput = document.getElementById('mDriverChoiceYes');
+        const needDriverChecked = yesInput ? yesInput.checked : (document.querySelector('input[name="mDriverChoice"]:checked')?.value === 'true');
+        const needDriver = (needDriverChecked !== undefined && needDriverChecked !== null) ? needDriverChecked : Boolean(this.state.needDriver);
+        this.state.needDriver = needDriver;
 
         const nextNum = this.data.bookings.length + 1;
         const newId = `BK-${String(nextNum).padStart(4, '0')}`;
@@ -5074,7 +5599,7 @@
           endDate: eDate,
           endTime: eTime,
           purpose,
-          needDriver: this.state.needDriver,
+          needDriver: needDriver,
           driverId: null,
           destination: dest || '',
           passengers: pax,
@@ -5126,18 +5651,20 @@
           return `<option value="${d.id}" ${isSelected ? 'selected' : ''} ${isBusy && !isSelected ? 'disabled' : ''}>${d.name} (${d.phone}) ${isBusy && !isSelected ? '— BUSY' : '— Available'}</option>`;
         }).join('');
 
-        const driverSelectHtml = `
+        const driverSelectHtml = b.needDriver ? `
           <div class="form-group-block" style="background:var(--card-alt); padding:10px 12px; border-radius:var(--r-md); border:1px solid var(--border-subtle); margin-top:10px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
               <label class="form-label-bold" style="color:var(--text); margin-bottom:0;">Assign Company Driver</label>
-              <span style="font-size:11px; font-weight:600; color:var(--text-muted);">(Optional)</span>
+              <span style="font-size:11px; font-weight:700; color:var(--c-primary); display:inline-flex; align-items:center; gap:4px;">
+                <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Need a driver
+              </span>
             </div>
             <select class="ppwsa-input" id="mReviewDriverSelect" style="background:var(--card); color:var(--text); margin-top:4px;">
-              <option value="">-- No driver / Self-drive (Optional) --</option>
+              <option value="">-- Assign a Driver (or leave for later) --</option>
               ${availDrivers}
             </select>
           </div>
-        `;
+        ` : '';
 
         document.getElementById('reviewSheetContent').innerHTML = `
           <div style="background:var(--card-alt); border:1px solid var(--border); border-radius:var(--r-lg); padding:14px;">
@@ -5159,6 +5686,9 @@
             <div style="font-size:12px; color:var(--text); background:var(--card); padding:8px 10px; border-radius:var(--r-md); border:1px solid var(--border-subtle); margin-top:8px;">
               "${b.purpose}"
               ${b.destination ? `<div style="font-size:11px; color:var(--c-primary); margin-top:2px;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${b.destination}</div>` : ''}
+              <div style="font-size:11px; margin-top:5px; font-weight:700; color:${b.needDriver ? 'var(--c-primary)' : 'var(--text-secondary)'}; display:flex; align-items:center; gap:4px;">
+                ${b.needDriver ? '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Need a driver' : '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Self-drive'}
+              </div>
             </div>
           </div>
 
@@ -5194,8 +5724,8 @@
           b.taskStatus = 'Assigned';
         } else {
           b.driverId = null;
-          b.needDriver = false;
           b.taskStatus = null;
+          // Keep b.needDriver unchanged (preserving requester choice)
         }
 
         b.status = 'Approved';
@@ -5626,7 +6156,21 @@
     };
 
     // Auto initialize app on DOM ready
-    document.addEventListener('DOMContentLoaded', () => app.init());
+    document.addEventListener('DOMContentLoaded', () => {
+      app.init();
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#mDashSearchWrap')) {
+          if (window.app && window.app.closeSmartSearchDropdown) {
+            window.app.closeSmartSearchDropdown();
+          }
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && window.app && window.app.closeSmartSearchDropdown) {
+          window.app.closeSmartSearchDropdown();
+        }
+      });
+    });
   </script>
 </body>
 </html>
