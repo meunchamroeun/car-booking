@@ -1642,6 +1642,24 @@
     .ppwsa-toast.success { background: #065f46; border-left: 4px solid #10b981; }
     .ppwsa-toast.error   { background: #991b1b; border-left: 4px solid #ef4444; }
     .ppwsa-toast.info    { background: #0c4a6e; border-left: 4px solid #0284c7; }
+  
+    .inline-svg-icon {
+      display: inline-block;
+      vertical-align: -2px;
+      margin-right: 4px;
+      flex-shrink: 0;
+    }
+    .status-dot-pulse {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #16a34a;
+      box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.2);
+      vertical-align: 0.5px;
+      margin-right: 4px;
+    }
+
   </style>
 </head>
 <body>
@@ -1788,7 +1806,7 @@
       </div>
       <div class="sheet-header-row">
         <div class="sheet-title-text" id="modalBookingTitle">Request a Vehicle</div>
-        <button class="sheet-close-round" onclick="app.closeSheet('bookingSheetOverlay')">✕</button>
+        <button class="sheet-close-round" onclick="app.closeSheet('bookingSheetOverlay')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
 
       <form class="sheet-scroll-body" id="bookingForm" onsubmit="app.handleBookingSubmit(event)">
@@ -1878,7 +1896,7 @@
       </div>
       <div class="sheet-header-row">
         <div class="sheet-title-text" id="profileSheetTitle">Profile &amp; Preferences</div>
-        <button class="sheet-close-round" onclick="app.closeSheet('profileSheetOverlay')">✕</button>
+        <button class="sheet-close-round" onclick="app.closeSheet('profileSheetOverlay')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <div class="sheet-scroll-body" id="profileSheetContent">
         <!-- Rendered by JS -->
@@ -1894,7 +1912,7 @@
       </div>
       <div class="sheet-header-row">
         <div class="sheet-title-text">Notifications</div>
-        <button class="sheet-close-round" onclick="app.closeSheet('notifSheetOverlay')">✕</button>
+        <button class="sheet-close-round" onclick="app.closeSheet('notifSheetOverlay')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <div class="sheet-scroll-body" id="notifSheetList">
         <!-- Rendered by JS -->
@@ -1910,7 +1928,7 @@
       </div>
       <div class="sheet-header-row">
         <div class="sheet-title-text">Review Booking Request</div>
-        <button class="sheet-close-round" onclick="app.closeSheet('reviewSheetOverlay')">✕</button>
+        <button class="sheet-close-round" onclick="app.closeSheet('reviewSheetOverlay')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <div class="sheet-scroll-body" id="reviewSheetContent">
         <!-- Rendered by JS -->
@@ -1926,7 +1944,7 @@
       </div>
       <div class="sheet-header-row">
         <div class="sheet-title-text">Reject Request</div>
-        <button class="sheet-close-round" onclick="app.closeSheet('rejectSheetOverlay')">✕</button>
+        <button class="sheet-close-round" onclick="app.closeSheet('rejectSheetOverlay')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <div class="sheet-scroll-body">
         <p style="font-size:12px; color:var(--text-secondary);">
@@ -1952,7 +1970,7 @@
       </div>
       <div class="sheet-header-row">
         <div class="sheet-title-text">Digital Booking Pass</div>
-        <button class="sheet-close-round" onclick="app.closeSheet('passSheetOverlay')">✕</button>
+        <button class="sheet-close-round" onclick="app.closeSheet('passSheetOverlay')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <div class="sheet-scroll-body" id="passSheetContent">
         <!-- Rendered by JS -->
@@ -1968,7 +1986,7 @@
       </div>
       <div class="sheet-header-row">
         <div class="sheet-title-text" id="completeTaskTitle">Complete Driving Mission</div>
-        <button class="sheet-close-round" onclick="app.closeSheet('completeTaskSheetOverlay')">✕</button>
+        <button class="sheet-close-round" onclick="app.closeSheet('completeTaskSheetOverlay')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <div class="sheet-scroll-body" id="completeTaskSheetContent">
         <!-- Rendered by JS -->
@@ -1984,7 +2002,7 @@
       </div>
       <div class="sheet-header-row">
         <div class="sheet-title-text" id="maintenanceSheetTitle">Vehicle Maintenance Control</div>
-        <button class="sheet-close-round" onclick="app.closeSheet('maintenanceSheetOverlay')">✕</button>
+        <button class="sheet-close-round" onclick="app.closeSheet('maintenanceSheetOverlay')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <div class="sheet-scroll-body" id="maintenanceSheetContent">
         <!-- Rendered dynamically by JS -->
@@ -2000,7 +2018,7 @@
       </div>
       <div class="sheet-header-row">
         <div class="sheet-title-text" id="earlyReturnSheetTitle">Return Vehicle Early &amp; Release Slot</div>
-        <button class="sheet-close-round" onclick="app.closeSheet('earlyReturnSheetOverlay')">✕</button>
+        <button class="sheet-close-round" onclick="app.closeSheet('earlyReturnSheetOverlay')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <div class="sheet-scroll-body" id="earlyReturnSheetContent">
         <!-- Rendered dynamically by JS -->
@@ -2019,7 +2037,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
           <span>Cancel Booking Request</span>
         </div>
-        <button class="sheet-close-round" onclick="app.closeSheet('cancelSheetOverlay')">✕</button>
+        <button class="sheet-close-round" onclick="app.closeSheet('cancelSheetOverlay')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <div class="sheet-scroll-body">
         <div id="mCancelBookingSummary" style="background:var(--card-alt); border:1px solid var(--border-subtle); border-radius:var(--r-md); padding:10px 12px; margin-bottom:12px; font-size:12px;">
@@ -2046,7 +2064,7 @@
           <label class="form-label-bold">Cancellation Reason <span class="req-mark">*</span></label>
           <textarea class="ppwsa-textarea" id="mCancelReasonInput" placeholder="Please explain why this booking is being cancelled..." style="height:76px;"></textarea>
           <div id="mCancelReasonError" style="display:none; color:var(--c-danger); font-size:11px; font-weight:600; margin-top:4px;">
-            ⚠️ Please enter a cancellation reason before proceeding.
+            <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Please enter a cancellation reason before proceeding.
           </div>
         </div>
 
@@ -2648,7 +2666,7 @@
                 ${activeCar ? activeCar.name : 'Corporate Car'} <span style="font-family:monospace; font-size:11px; font-weight:800; color:var(--c-primary-dk); background:var(--c-primary-tint); padding:2px 7px; border-radius:4px; margin-left:4px;">${activeCar ? activeCar.plate : ''}</span>
               </div>
               <div style="font-size:12px; color:var(--text-secondary); margin-top:3px;">
-                🕒 <strong>${activeTrip.startTime} – ${activeTrip.endTime}</strong> · 📍 ${activeTrip.destination || 'Field trip'}
+                <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <strong>${activeTrip.startTime} – ${activeTrip.endTime}</strong> · <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${activeTrip.destination || 'Field trip'}
               </div>
               <div style="font-size:11.5px; color:var(--text-muted); font-style:italic; margin-top:3px;">
                 "${activeTrip.purpose}"
@@ -2678,10 +2696,10 @@
             <div class="date-row">
               <input type="date" class="ppwsa-date-input" id="mDashDatePicker" value="${this.state.selectedDate}" oninput="app.onDashDateChange(this.value)" onchange="app.onDashDateChange(this.value)" />
               <button class="chip-btn ${isToday ? 'active' : ''}" onclick="app.setDashDate('${DateUtil.todayStr()}')">
-                📅 ${this.t('today')}
+                <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${this.t('today')}
               </button>
               <button class="chip-btn ${isTomorrow ? 'active' : ''}" onclick="app.setDashDate('${DateUtil.tomorrowStr()}')">
-                📅 ${this.t('tomorrow')}
+                <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${this.t('tomorrow')}
               </button>
             </div>
 
@@ -2843,11 +2861,11 @@
             canBook = false;
             btnText = this.t('under_maint');
             badgeHtml = `<span class="status-badge maintenance">${car.maintenance?.mode === 'scheduled' ? 'Scheduled Service' : this.t('maintenance')}</span>`;
-            reservedHtml = `<div class="slot-notice-box busy">⚠️ ${car.maintenance?.reason ? `Vehicle under service: ${car.maintenance.reason}` : 'Vehicle scheduled for technical inspection'}</div>`;
+            reservedHtml = `<div class="slot-notice-box busy"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> ${car.maintenance?.reason ? `Vehicle under service: ${car.maintenance.reason}` : 'Vehicle scheduled for technical inspection'}</div>`;
           } else if (hasRemainingSlot) {
             canBook = true;
             btnText = `Book ${remainingStartTime}–${slot.end} (Open)`;
-            badgeHtml = `<span class="status-badge available" style="background:#f0fdf4; color:#15803d; border-color:#86efac;">Open ${remainingStartTime}–${slot.end} 🟢</span>`;
+            badgeHtml = `<span class="status-badge available" style="background:#f0fdf4; color:#15803d; border-color:#86efac;"><span class="status-dot-pulse"></span> Open ${remainingStartTime}–${slot.end}</span>`;
             prefillStart = remainingStartTime;
             prefillEnd = slot.end;
             reservedHtml = `
@@ -2855,7 +2873,7 @@
                 <strong>Schedule on ${this.state.selectedDate}:</strong>
                 ${dayApproved.map(b => {
                   const u = this.data.users.find(x => x.id === b.requesterId);
-                  return `<div style="margin-top:2px;">• <strong>${b.startTime}–${b.endTime}</strong> by ${u ? u.name : 'Staff'} <span style="font-weight:700; color:#16a34a;">(Returned early at ${b.endTime} · Available from ${b.endTime} onward! 🟢)</span></div>`;
+                  return `<div style="margin-top:2px;">• <strong>${b.startTime}–${b.endTime}</strong> by ${u ? u.name : 'Staff'} <span style="font-weight:700; color:#16a34a;">(Returned early at ${b.endTime} · Available from ${b.endTime} onward!)</span></div>`;
                 }).join('')}
               </div>
             `;
@@ -2875,7 +2893,7 @@
                 ${dayApproved.map(b => {
                   const u = this.data.users.find(x => x.id === b.requesterId);
                   if (b.returnedEarly) {
-                    return `<div style="margin-top:2px;">• <strong>${b.startTime}–${b.endTime}</strong> by ${u ? u.name : 'Staff'} <span style="color:#16a34a; font-weight:700;">(Returned early at ${b.endTime} · Available now! 🟢)</span></div>`;
+                    return `<div style="margin-top:2px;">• <strong>${b.startTime}–${b.endTime}</strong> by ${u ? u.name : 'Staff'} <span style="color:#16a34a; font-weight:700;">(Returned early at ${b.endTime} · Available now!)</span></div>`;
                   }
                   return `<div style="margin-top:2px;">• ${b.startTime}–${b.endTime} by ${u ? u.name : 'Staff'} ("${b.purpose}")</div>`;
                 }).join('')}
@@ -2883,7 +2901,7 @@
             `;
           } else if (!activeApproved.length && earlyReturned.length) {
             const latestEnd = earlyReturned[earlyReturned.length - 1].endTime;
-            badgeHtml = `<span class="status-badge available" style="background:#f0fdf4; color:#15803d; border-color:#86efac;">Available from ${latestEnd} 🟢</span>`;
+            badgeHtml = `<span class="status-badge available" style="background:#f0fdf4; color:#15803d; border-color:#86efac;"><span class="status-dot-pulse"></span> Available from ${latestEnd}</span>`;
             btnText = `Book from ${latestEnd} onward`;
             canBook = true;
             prefillStart = latestEnd;
@@ -2893,7 +2911,7 @@
                 <strong>Schedule on ${this.state.selectedDate}:</strong>
                 ${dayApproved.map(b => {
                   const u = this.data.users.find(x => x.id === b.requesterId);
-                  return `<div style="margin-top:2px;">• <strong>${b.startTime}–${b.endTime}</strong> by ${u ? u.name : 'Staff'} <span style="font-weight:700; color:#16a34a;">(Returned early at ${b.endTime} · Open from ${b.endTime} onward! 🟢)</span></div>`;
+                  return `<div style="margin-top:2px;">• <strong>${b.startTime}–${b.endTime}</strong> by ${u ? u.name : 'Staff'} <span style="font-weight:700; color:#16a34a;">(Returned early at ${b.endTime} · Open from ${b.endTime} onward!)</span></div>`;
                 }).join('')}
               </div>
             `;
@@ -2902,7 +2920,7 @@
             btnText = slot ? `Book ${slot.label}` : this.t('book_car');
             reservedHtml = `
               <div class="slot-notice-box open">
-                ✓ ${this.t('full_open')} on ${this.state.selectedDate}
+                <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ${this.t('full_open')} on ${this.state.selectedDate}
               </div>
             `;
           }
@@ -2976,7 +2994,7 @@
                 <span>Pending</span>
               </span>
               <span class="legend-item" style="margin-left:auto; color:var(--text-muted); font-size:10.5px;">
-                👉 Swipe across hours
+                <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg> Swipe across hours
               </span>
             </div>
 
@@ -3012,7 +3030,7 @@
                           <div class="timeline-track-wrap">
                             ${isMaint ? `
                               <div style="width:100%; height:100%; background:var(--card-alt); display:flex; align-items:center; justify-content:center; color:var(--text-muted); font-size:11px; font-weight:700;">
-                                ⚠️ Service / Maintenance
+                                <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Service / Maintenance
                               </div>
                             ` : `
                               <!-- Interactive 1-hour Slot Columns -->
@@ -3067,7 +3085,7 @@
         if (!b) return;
         const car = this.data.cars.find(c => c.id === b.carId);
         if (b.returnedEarly) {
-          this.showToast(`🚗 ${car ? car.name : 'Vehicle'} returned early at ${b.endTime} (originally ${b.originalEndTime || '12:00'}). Slot from ${b.endTime} onward is open for colleagues!`, 'success');
+          this.showToast(`${car ? car.name : 'Vehicle'} returned early at ${b.endTime} (originally ${b.originalEndTime || '12:00'}). Slot from ${b.endTime} onward is open for colleagues!`, 'success');
         } else if (b.status === 'Approved') {
           this.showToast(`Booking ${b.id} is Approved ("${b.purpose}")`, 'info');
         } else {
@@ -3137,7 +3155,7 @@
 
                   <div style="font-size:12px; color:var(--text-secondary); background:var(--card-alt); padding:8px 10px; border-radius:var(--r-md); border:1px solid var(--border-subtle); margin-bottom:8px;">
                     "${b.purpose}"
-                    ${b.destination ? `<div style="font-size:11px; color:var(--c-primary); margin-top:4px;">📍 ${b.destination}</div>` : ''}
+                    ${b.destination ? `<div style="font-size:11px; color:var(--c-primary); margin-top:4px;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${b.destination}</div>` : ''}
                   </div>
 
                   <div style="font-size:11.5px; color:var(--text-muted); display:flex; justify-content:space-between; margin-bottom:12px;">
@@ -3148,7 +3166,7 @@
                   ${b.returnedEarly ? `
                     <div style="font-size:11.5px; color:#15803d; background:#f0fdf4; padding:9px 12px; border-radius:var(--r-md); border:1px solid #bbf7d0; margin-bottom:12px;">
                       <div style="font-weight:800; display:flex; align-items:center; justify-content:space-between;">
-                        <span>✓ Returned Early at ${b.actualEndTime || b.endTime}</span>
+                        <span><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Returned Early at ${b.actualEndTime || b.endTime}</span>
                         <span style="font-size:10px; font-weight:700; background:#dcfce7; padding:2px 6px; border-radius:4px;">Released</span>
                       </div>
                       <div style="margin-top:3px; font-size:11px; color:#166534; line-height:1.4;">
@@ -3167,7 +3185,7 @@
                   ${b.status === 'Cancelled' && b.cancelReason ? `
                     <div style="font-size:11.5px; color:#c2410c; background:#fff7ed; padding:8px 10px; border-radius:var(--r-md); border:1px solid #fed7aa; margin-bottom:12px;">
                       <div style="font-weight:700; display:flex; align-items:center; gap:4px; margin-bottom:2px;">
-                        <span>✕ Cancelled</span>
+                        <span><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Cancelled</span>
                         ${b.cancelledAt ? `<span style="font-weight:normal; font-size:10px; color:#ea580c;">(${b.cancelledAt})</span>` : ''}
                       </div>
                       <div><strong>Reason:</strong> "${b.cancelReason}"</div>
@@ -3226,7 +3244,7 @@
               <span style="font-size:11px; color:var(--text-muted); font-family:monospace;">${car ? car.plate : ''}</span>
             </div>
             <div style="color:var(--text-secondary); font-size:11.5px;">
-              📅 ${b.startDate} &bull; ${b.startTime} &ndash; ${b.endTime}
+              <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${b.startDate} &bull; ${b.startTime} &ndash; ${b.endTime}
             </div>
             <div style="color:var(--text-muted); font-size:11px; margin-top:2px;">
               Purpose: "${b.purpose}" ${driverObj ? `&bull; Driver: ${driverObj.name}` : ''}
@@ -3393,26 +3411,26 @@
                   </div>
 
                   <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:6px;">
-                    🗓️ ${b.startDate} · ${b.startTime} – ${b.endTime}
+                    <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${b.startDate} · ${b.startTime} – ${b.endTime}
                   </div>
 
                   <div style="font-size:12px; color:var(--text-secondary); background:var(--card-alt); padding:8px 10px; border-radius:var(--r-md); border:1px solid var(--border-subtle); margin-bottom:8px;">
                     "${b.purpose}"
-                    ${b.destination ? `<div style="font-size:11px; color:var(--c-primary); margin-top:2px;">📍 Destination: ${b.destination}</div>` : ''}
+                    ${b.destination ? `<div style="font-size:11px; color:var(--c-primary); margin-top:2px;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Destination: ${b.destination}</div>` : ''}
                   </div>
 
                   <div style="font-size:11.5px; display:flex; justify-content:space-between; color:var(--text-muted); margin-bottom:12px;">
-                    <span>${b.needDriver ? '⚠️ <strong>Driver Needed</strong>' : '✓ Self-drive'}</span>
+                    <span>${b.needDriver ? '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> <strong>Driver Needed</strong>' : '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Self-drive'}</span>
                     <span>${driver ? `Assigned: ${driver.name}` : ''}</span>
                   </div>
 
                   ${b.status === 'Pending' ? `
                     <div style="display:flex; gap:8px;">
                       <button class="chip-btn" style="flex:1; color:var(--c-danger); border-color:var(--c-danger);" onclick="app.openRejectSheet('${b.id}')">
-                        ✕ Reject
+                        <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Reject
                       </button>
                       <button class="btn-ppwsa-primary" style="flex:1; height:38px; font-size:12.5px;" onclick="app.openReviewSheet('${b.id}')">
-                        ✓ Review &amp; Approve
+                        <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Review &amp; Approve
                       </button>
                     </div>
                   ` : (driver ? `
@@ -3424,7 +3442,7 @@
                         </div>
                       </div>
                       <button class="chip-btn active" style="font-size:11px; height:28px;" onclick="app.viewDriverMission('${b.id}')">
-                        View Driver Task ➔
+                        View Driver Task <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                       </button>
                     </div>
                   ` : '')}
@@ -3476,7 +3494,7 @@
                 <span class="status-badge" style="background:var(--c-primary-tint); color:var(--c-primary-dk); font-size:10px; border:1px solid rgba(var(--c-primary-rgb),0.2);">
                   ${activeCount} Active
                 </span>
-                ${isApprover ? '<span class="status-badge" style="background:#fffbeb; color:#b45309; border:1px solid #fde68a; font-size:10px;">👁️ View Only</span>' : ''}
+                ${isApprover ? '<span class="status-badge" style="background:#fffbeb; color:#b45309; border:1px solid #fde68a; font-size:10px;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> View Only</span>' : ''}
               </h2>
               <p style="font-size:11.5px; color:var(--text-secondary); margin-top:2px;">
                 ${isApprover ? `Logged in as <strong>${u.name}</strong> (Approver) · <em>Tasks tab is View-Only</em>` : `Logged in as <strong>${u.name}</strong> (${u.role}) · Oversee fleet driver assignments &amp; trips`}
@@ -3487,7 +3505,7 @@
           <!-- Driver Filter Banner -->
           <div style="margin:0 14px 12px; background:linear-gradient(135deg, rgba(25,118,210,0.08) 0%, rgba(13,71,161,0.04) 100%); border:1px solid rgba(25,118,210,0.22); border-radius:var(--r-lg); padding:10px 12px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-              <span style="font-size:11px; font-weight:800; color:var(--c-primary); text-transform:uppercase; letter-spacing:0.5px;">🚗 Filter by Assigned Driver</span>
+              <span style="font-size:11px; font-weight:800; color:var(--c-primary); text-transform:uppercase; letter-spacing:0.5px;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Filter by Assigned Driver</span>
               <span style="font-size:10.5px; color:var(--text-muted);">${u.name} (${u.role})</span>
             </div>
             <div style="display:flex; gap:6px; overflow-x:auto;">
@@ -3496,7 +3514,7 @@
               </button>
               ${this.data.drivers.map(d => `
                 <button class="chip-btn ${this.state.driverSelectedId === d.id ? 'active' : ''}" style="height:28px; font-size:10.5px;" onclick="app.setDriverTaskFilterSelect('${d.id}')">
-                  👤 ${d.name}
+                  <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ${d.name}
                 </button>
               `).join('')}
             </div>
@@ -3505,10 +3523,10 @@
           <!-- Status Filter Tabs -->
           <div class="scroll-chips-row" style="padding:0 14px; margin-bottom:12px;">
             <button class="chip-btn ${filter === 'active' ? 'active' : ''}" onclick="app.setDriverTaskFilter('active')">
-              ⏳ Active &amp; Assigned (${activeCount})
+              <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Active &amp; Assigned (${activeCount})
             </button>
             <button class="chip-btn ${filter === 'completed' ? 'active' : ''}" onclick="app.setDriverTaskFilter('completed')">
-              ✓ Completed (${completedCount})
+              <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Completed (${completedCount})
             </button>
             <button class="chip-btn ${filter === 'all' ? 'active' : ''}" onclick="app.setDriverTaskFilter('all')">
               All Missions
@@ -3519,7 +3537,7 @@
           <div class="cards-stack">
             ${!tasks.length ? `
               <div style="text-align:center; padding:36px 14px; background:var(--card); border-radius:var(--r-xl); border:1px solid var(--border); color:var(--text-secondary);">
-                <div style="font-size:32px; margin-bottom:8px;">🛣️</div>
+                <div style="margin-bottom:8px; color:var(--text-muted); display:flex; justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></div>
                 <p style="font-weight:700; font-size:14px;">No driving tasks found</p>
                 <p style="font-size:11.5px; margin-top:4px; color:var(--text-muted);">
                   ${filter === 'active' ? 'No pending or active driving assignments right now. New trips assigned by approver will appear here.' : 'No completed tasks recorded under this filter.'}
@@ -3543,16 +3561,16 @@
                         <span style="font-size:12px; font-weight:800; color:var(--text);">${b.startDate}</span>
                       </div>
                       <div style="font-size:11px; color:var(--text-secondary); margin-top:2px;">
-                        🕒 Time Window: <strong>${b.startTime} – ${b.endTime}</strong>
+                        <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Time Window: <strong>${b.startTime} – ${b.endTime}</strong>
                       </div>
                     </div>
                     <div>
                       ${isTaskDone ? `
-                        <span class="status-badge" style="background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0;">✓ Completed</span>
+                        <span class="status-badge" style="background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Completed</span>
                       ` : isInProgress ? `
-                        <span class="status-badge" style="background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe;">🚗 In Progress</span>
+                        <span class="status-badge" style="background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> In Progress</span>
                       ` : `
-                        <span class="status-badge" style="background:#fff7ed; color:#c2410c; border:1px solid #ffedd5;">⏳ Assigned</span>
+                        <span class="status-badge" style="background:#fff7ed; color:#c2410c; border:1px solid #ffedd5;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Assigned</span>
                       `}
                     </div>
                   </div>
@@ -3560,7 +3578,7 @@
                   <!-- 1. DRIVING FOR WHO SECTION -->
                   <div style="background:var(--card-alt); border:1px solid var(--border-subtle); border-radius:var(--r-lg); padding:10px 12px; margin-bottom:10px;">
                     <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin-bottom:4px;">
-                      👤 Driving For Who? (Passenger Details)
+                      <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Driving For Who? (Passenger Details)
                     </div>
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                       <div>
@@ -3569,7 +3587,7 @@
                       </div>
                       ${requester && requester.phone ? `
                         <a href="tel:${requester.phone}" class="chip-btn" style="text-decoration:none; height:28px; font-size:11px; gap:4px; border-color:var(--c-primary); color:var(--c-primary);">
-                          📞 ${requester.phone}
+                          <svg class="inline-svg-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> ${requester.phone}
                         </a>
                       ` : ''}
                     </div>
@@ -3578,7 +3596,7 @@
                   <!-- 2. WHERE SECTION (ROUTE & DESTINATION) -->
                   <div style="background:var(--card-alt); border:1px solid var(--border-subtle); border-radius:var(--r-lg); padding:10px 12px; margin-bottom:10px;">
                     <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin-bottom:6px;">
-                      📍 Where? (Route &amp; Destination)
+                      <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Where? (Route &amp; Destination)
                     </div>
                     <div style="display:flex; flex-direction:column; gap:6px;">
                       <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-secondary);">
@@ -3613,32 +3631,32 @@
                   <!-- 4. ACTIONS FOR DRIVER / VIEW ONLY -->
                   ${isTaskDone ? `
                     <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:var(--r-md); padding:10px; font-size:12px; color:#15803d; text-align:center; font-weight:700;">
-                      ✓ Mission Completed at ${b.completedAt || 'today'}
+                      <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Mission Completed at ${b.completedAt || 'today'}
                       ${b.completionNotes ? `<div style="font-size:11px; font-weight:400; color:#166534; margin-top:2px;">Note: "${b.completionNotes}"</div>` : ''}
                     </div>
                   ` : isApprover ? `
                     <div style="background:var(--card-alt); border:1px dashed #fde68a; border-radius:var(--r-md); padding:9px 12px; display:flex; justify-content:space-between; align-items:center;">
                       <div style="display:flex; align-items:center; gap:6px; font-size:11.5px; color:var(--text-secondary);">
-                        <span style="font-size:13px;">👁️</span>
+                        <span><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
                         <span><strong>Approver View:</strong> Read-only task (Assigned to ${driver ? driver.name : 'Driver'})</span>
                       </div>
                       <span class="status-badge" style="font-size:10px; background:${isInProgress ? '#eff6ff' : '#fff7ed'}; color:${isInProgress ? '#1d4ed8' : '#c2410c'}; border:1px solid ${isInProgress ? '#bfdbfe' : '#ffedd5'};">
-                        ${isInProgress ? '🚗 In Progress' : '⏳ Ready for Driver'}
+                        ${isInProgress ? '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> In Progress' : '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Ready for Driver'}
                       </span>
                     </div>
                   ` : isInProgress ? `
                     <div style="display:flex; gap:8px;">
                       <button class="btn-ppwsa-primary" style="flex:1; height:42px; background:#16a34a; box-shadow:0 4px 14px rgba(22,163,74,0.3);" onclick="app.openCompleteTaskSheet('${b.id}')">
-                        ✓ Mark Task as Completed
+                        <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Mark Task as Completed
                       </button>
                     </div>
                   ` : `
                     <div style="display:flex; gap:8px;">
                       <button class="chip-btn active" style="flex:1; height:38px; font-size:12px;" onclick="app.startDriverMission('${b.id}')">
-                        🚗 Start Trip
+                        <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Start Trip
                       </button>
                       <button class="btn-ppwsa-primary" style="flex:1; height:38px; font-size:12px; background:#16a34a; box-shadow:0 4px 14px rgba(22,163,74,0.3);" onclick="app.openCompleteTaskSheet('${b.id}')">
-                        ✓ Mark Completed
+                        <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Mark Completed
                       </button>
                     </div>
                   `}
@@ -3669,7 +3687,7 @@
         if (!b) return;
         b.taskStatus = 'In Progress';
         this.saveData();
-        this.showToast(`🚗 Mission ${b.id} started! Status is now In Progress.`, 'info');
+        this.showToast(`Mission ${b.id} started! Status is now In Progress.`, 'info');
         this.renderCurrentTab();
       },
 
@@ -3695,10 +3713,10 @@
               <span class="status-badge" style="background:#eff6ff; color:#1d4ed8; border:1px solid #dbeafe;">${b.taskStatus || 'Assigned'}</span>
             </div>
             <div style="margin-top:10px; font-size:12px; color:var(--text-secondary); line-height:1.6;">
-              <div>👤 <strong>Passenger:</strong> ${req ? req.name : 'Staff'} (${req ? req.dept : ''})</div>
-              <div>📍 <strong>Destination:</strong> ${b.destination || 'Field site destination'}</div>
-              <div>🚗 <strong>Vehicle:</strong> ${car ? car.name : ''} (${car ? car.plate : ''})</div>
-              <div>🕒 <strong>Schedule:</strong> ${b.startDate} · ${b.startTime} – ${b.originalEndTime || b.endTime}</div>
+              <div><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> <strong>Passenger:</strong> ${req ? req.name : 'Staff'} (${req ? req.dept : ''})</div>
+              <div><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> <strong>Destination:</strong> ${b.destination || 'Field site destination'}</div>
+              <div><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> <strong>Vehicle:</strong> ${car ? car.name : ''} (${car ? car.plate : ''})</div>
+              <div><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <strong>Schedule:</strong> ${b.startDate} · ${b.startTime} – ${b.originalEndTime || b.endTime}</div>
             </div>
           </div>
 
@@ -3722,7 +3740,7 @@
             </div>
 
             <button type="submit" class="btn-ppwsa-primary" style="background:#16a34a; box-shadow:0 4px 14px rgba(22,163,74,0.3); margin-top:8px;">
-              <span>✓ Confirm &amp; Mark Task Completed</span>
+              <span><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Confirm &amp; Mark Task Completed</span>
             </button>
           </form>
         `;
@@ -3773,9 +3791,9 @@
         this.saveData();
         this.closeSheet('completeTaskSheetOverlay');
         if (isEarly) {
-          this.showToast(`🎉 Mission ${b.id} completed early at ${returnTime}! Vehicle is now available for other users.`, 'success');
+          this.showToast(`Mission ${b.id} completed early at ${returnTime}! Vehicle is now available for other users.`, 'success');
         } else {
-          this.showToast(`🎉 Mission ${b.id} marked as Completed!`, 'success');
+          this.showToast(`Mission ${b.id} marked as Completed!`, 'success');
         }
         this.renderCurrentTab();
       },
@@ -3824,11 +3842,11 @@
             </div>
 
             <div style="margin-top:10px; font-size:12px; color:var(--text-secondary); line-height:1.6; border-top:1px dashed var(--border); padding-top:8px;">
-              <div>👤 <strong>Passenger:</strong> ${req ? req.name : 'Staff'} (${req ? req.dept : ''})</div>
-              <div>🗓️ <strong>Date:</strong> ${b.startDate}</div>
-              <div>🕒 <strong>Scheduled Window:</strong> <span style="font-weight:700; color:var(--text);">${b.startTime} – ${b.originalEndTime || b.endTime}</span></div>
-              <div>📍 <strong>Destination:</strong> ${b.destination || 'Mission location'}</div>
-              <div>💼 <strong>Purpose:</strong> "${b.purpose}"</div>
+              <div><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> <strong>Passenger:</strong> ${req ? req.name : 'Staff'} (${req ? req.dept : ''})</div>
+              <div><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> <strong>Date:</strong> ${b.startDate}</div>
+              <div><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <strong>Scheduled Window:</strong> <span style="font-weight:700; color:var(--text);">${b.startTime} – ${b.originalEndTime || b.endTime}</span></div>
+              <div><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> <strong>Destination:</strong> ${b.destination || 'Mission location'}</div>
+              <div><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> <strong>Purpose:</strong> "${b.purpose}"</div>
             </div>
           </div>
 
@@ -3844,7 +3862,7 @@
           <!-- Quick Time Preset Chips -->
           <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px;">
             <button type="button" class="chip-btn" style="height:30px; font-size:11px;" onclick="app.setEarlyReturnPreset('${b.id}', '10:00')">
-              ⭐ 10:00 AM (Early Return)
+              <svg class="inline-svg-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 10:00 AM (Early Return)
             </button>
             <button type="button" class="chip-btn" style="height:30px; font-size:11px;" onclick="app.setEarlyReturnPreset('${b.id}', '10:30')">
               10:30 AM
@@ -3853,7 +3871,7 @@
               11:00 AM
             </button>
             <button type="button" class="chip-btn" style="height:30px; font-size:11px;" onclick="app.setEarlyReturnPreset('${b.id}', '${nowStr}')">
-              ⏱️ Current Time (${nowStr})
+              <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Current Time (${nowStr})
             </button>
           </div>
 
@@ -3913,7 +3931,7 @@
         if (!returnTime || returnMins <= startMins) {
           preview.innerHTML = `
             <div style="font-size:11.5px; color:#b91c1c; background:#fee2e2; border:1px solid #fecaca; border-radius:var(--r-md); padding:10px 12px;">
-              ⚠️ Return time must be after mission start time (${b.startTime}).
+              <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Return time must be after mission start time (${b.startTime}).
             </div>
           `;
           if (btn) btn.disabled = true;
@@ -3926,7 +3944,7 @@
           preview.innerHTML = `
             <div style="font-size:12px; color:#15803d; background:#f0fdf4; border:1.5px solid #86efac; border-radius:var(--r-md); padding:12px 14px; box-shadow:0 2px 8px rgba(22,163,74,0.1);">
               <div style="display:flex; align-items:center; gap:6px; font-weight:800; font-size:13px;">
-                <span>🟢 Early Return Benefit:</span>
+                <span class="status-dot-pulse"></span> Early Return Benefit:
                 <span style="background:#dcfce7; padding:2px 8px; border-radius:10px; font-size:11px;">+${hours} Hour(s) Released</span>
               </div>
               <div style="margin-top:6px; line-height:1.5;">
@@ -3957,7 +3975,7 @@
         } else if (returnMins === endMins) {
           preview.innerHTML = `
             <div style="font-size:11.5px; color:#0369a1; background:#f0f9ff; border:1px solid #bae6fd; border-radius:var(--r-md); padding:10px 12px;">
-              ℹ️ Returned on schedule at ${returnTime}. Mission will be marked as Completed.
+              <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Returned on schedule at ${returnTime}. Mission will be marked as Completed.
             </div>
           `;
           if (btn) {
@@ -3977,7 +3995,7 @@
         } else {
           preview.innerHTML = `
             <div style="font-size:11.5px; color:#c2410c; background:#fff7ed; border:1px solid #ffedd5; border-radius:var(--r-md); padding:10px 12px;">
-              ⏰ Returned after scheduled end time (${origEnd}). Booking end time will be adjusted to ${returnTime}.
+              <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Returned after scheduled end time (${origEnd}). Booking end time will be adjusted to ${returnTime}.
             </div>
           `;
           if (btn) {
@@ -4059,9 +4077,9 @@
         this.closeSheet('passSheetOverlay');
 
         if (isEarly) {
-          this.showToast(`🎉 ${carName} returned at ${returnTime}! Slot from ${returnTime} onward is now open for other users.`, 'success');
+          this.showToast(`${carName} returned at ${returnTime}! Slot from ${returnTime} onward is now open for other users.`, 'success');
         } else {
-          this.showToast(`✓ Mission ${b.id} marked as completed at ${returnTime}.`, 'success');
+          this.showToast(`Mission ${b.id} marked as completed at ${returnTime}.`, 'success');
         }
 
         this.renderCurrentTab();
@@ -4101,7 +4119,7 @@
               <p style="font-size:11.5px; color:var(--text-secondary);">System configuration &amp; corporate overview</p>
             </div>
             <span class="status-badge" style="background:${canManage ? (u.role === 'Admin' ? '#fbf5f9' : '#fffbeb') : 'var(--c-primary-tint)'}; color:${canManage ? (u.role === 'Admin' ? '#875a7b' : '#b45309') : 'var(--c-primary)'}; border:1px solid ${canManage ? (u.role === 'Admin' ? '#e5d7e2' : '#fde68a') : 'rgba(var(--c-primary-rgb),0.3)'}; font-size:10.5px;">
-              ${canManage ? (u.role === 'Admin' ? '👑 Administrator' : '🛡️ Approver') : `${u.role} View`}
+              ${canManage ? (u.role === 'Admin' ? '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14v2H5z"/></svg> Administrator' : '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Approver') : `${u.role} View`}
             </span>
           </div>
 
@@ -4137,7 +4155,7 @@
             <!-- Role Permission Banner -->
             ${canManage ? `
               <div style="display:flex; align-items:center; gap:8px; padding:8px 10px; background:rgba(46,125,50,0.08); border:1px solid rgba(46,125,50,0.22); border-radius:var(--r-md); font-size:11px; color:var(--c-success-text); margin-bottom:10px;">
-                <span style="font-size:14px;">🛡️</span>
+                <span><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
                 <div style="flex:1;">
                   Authorized as <strong>${u.name}</strong> (<strong>${u.role}</strong>). You can set vehicles to maintenance or put back to available.
                 </div>
@@ -4145,13 +4163,13 @@
             ` : `
               <div style="padding:10px; background:rgba(230,81,0,0.08); border:1px solid rgba(230,81,0,0.25); border-radius:var(--r-md); font-size:11px; color:var(--c-warning-text); margin-bottom:10px;">
                 <div style="display:flex; align-items:center; gap:6px; font-weight:700; margin-bottom:4px;">
-                  <span>🔒</span>
+                  <span><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
                   <span>Maintenance Controls Restricted</span>
                 </div>
                 <div>Logged in as <strong>${u.name}</strong> (${u.role}). Only <strong>Administrator</strong> or <strong>Approver</strong> users can set vehicles to maintenance or put back into available.</div>
                 <div style="display:flex; gap:6px; margin-top:8px; flex-wrap:wrap;">
-                  <button type="button" class="chip-btn" style="height:26px; font-size:10.5px; padding:0 8px; background:var(--card); font-weight:700;" onclick="app.switchUser('u4')">⚡ Switch to Sophea Lim (Approver)</button>
-                  <button type="button" class="chip-btn" style="height:26px; font-size:10.5px; padding:0 8px; background:var(--card); font-weight:700;" onclick="app.switchUser('u7')">⚡ Switch to Admin</button>
+                  <button type="button" class="chip-btn" style="height:26px; font-size:10.5px; padding:0 8px; background:var(--card); font-weight:700;" onclick="app.switchUser('u4')"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Switch to Sophea Lim (Approver)</button>
+                  <button type="button" class="chip-btn" style="height:26px; font-size:10.5px; padding:0 8px; background:var(--card); font-weight:700;" onclick="app.switchUser('u7')"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Switch to Admin</button>
                 </div>
               </div>
             `}
@@ -4196,13 +4214,13 @@
                       <div style="display:flex; flex-direction:column; align-items:flex-end; gap:3px;">
                         ${isMaint ? `
                           <span class="status-badge maintenance" style="font-size:10px; padding:2px 7px;">
-                            ${maintInfo.mode === 'scheduled' ? '📅 In Service (Scheduled)' : '🔧 In Service (Manual)'}
+                            ${maintInfo.mode === 'scheduled' ? '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> In Service (Scheduled)' : '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> In Service (Manual)'}
                           </span>
                         ` : `
                           <span class="status-badge available" style="font-size:10px; padding:2px 7px;">● Available</span>
                           ${hasFutureSched ? `
                             <span class="status-badge" style="background:var(--c-primary-tint); color:var(--c-primary-dk); border:1px solid rgba(var(--c-primary-rgb),0.25); font-size:9.5px; padding:1px 5px;">
-                              📅 Sched: ${maintInfo.startDate}
+                              <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Sched: ${maintInfo.startDate}
                             </span>
                           ` : ''}
                         `}
@@ -4212,22 +4230,22 @@
                     <!-- Maintenance detail description -->
                     ${isMaint ? `
                       <div style="font-size:11px; color:var(--c-danger-text); margin-top:6px; background:rgba(198,40,40,0.06); padding:4px 8px; border-radius:var(--r-sm); border:1px solid rgba(198,40,40,0.15);">
-                        <strong>${maintInfo.mode === 'scheduled' ? '📅 Scheduled:' : '🔧 Manual:'}</strong> ${maintInfo.reason || 'Under technical servicing'}
+                        <strong>${maintInfo.mode === 'scheduled' ? '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Scheduled:' : '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Manual:'}</strong> ${maintInfo.reason || 'Under technical servicing'}
                         ${maintInfo.mode === 'scheduled' ? ` (${maintInfo.startDate} ${maintInfo.startTime || '08:00'} – ${maintInfo.endDate} ${maintInfo.endTime || '17:00'})` : (maintInfo.estimatedDate ? ` · Est: ${maintInfo.estimatedDate}` : '')}
                       </div>
                     ` : hasFutureSched ? `
                       <div style="font-size:11px; color:var(--c-primary-dk); margin-top:6px; background:var(--c-primary-tint); padding:4px 8px; border-radius:var(--r-sm); border:1px solid rgba(var(--c-primary-rgb),0.25); display:flex; justify-content:space-between; align-items:center;">
                         <div>
-                          <strong>📅 Upcoming Maintenance:</strong> ${maintInfo.startDate} (${maintInfo.startTime}–${maintInfo.endTime})
+                          <strong><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Upcoming Maintenance:</strong> ${maintInfo.startDate} (${maintInfo.startTime}–${maintInfo.endTime})
                           <div style="font-size:10px; color:var(--text-muted);">${maintInfo.reason}</div>
                         </div>
-                        <button type="button" class="chip-btn" style="height:22px; font-size:9.5px; padding:0 6px; border:none;" onclick="app.clearCarMaintenanceSchedule('${c.id}')" title="Cancel this scheduled maintenance">✕ Cancel</button>
+                        <button type="button" class="chip-btn" style="height:22px; font-size:9.5px; padding:0 6px; border:none;" onclick="app.clearCarMaintenanceSchedule('${c.id}')" title="Cancel this scheduled maintenance"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Cancel</button>
                       </div>
                     ` : ''}
 
                     ${dayApproved.length > 0 ? `
                       <div style="font-size:10.5px; color:var(--c-warning-text); margin-top:6px; background:rgba(230,81,0,0.08); padding:4px 8px; border-radius:var(--r-sm); display:flex; align-items:center; gap:5px;">
-                        <span>⚠️</span>
+                        <span><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
                         <span>${dayApproved.length} approved booking(s) scheduled today</span>
                       </div>
                     ` : ''}
@@ -4277,7 +4295,7 @@
             <div class="filter-title-micro">Prototype Demo Controls</div>
             <div style="display:flex; flex-direction:column; gap:10px; margin-top:6px;">
               <button class="chip-btn" style="height:44px; font-size:13px;" onclick="app.confirmResetDemo()">
-                🔄 Reset Demo Data to Factory Defaults
+                <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> Reset Demo Data to Factory Defaults
               </button>
             </div>
           </div>
@@ -4342,7 +4360,7 @@
             <div style="background:rgba(198,40,40,0.06); border:1px solid rgba(198,40,40,0.25); border-radius:var(--r-md); padding:10px 12px; margin-bottom:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                 <span style="font-weight:700; font-size:12px; color:var(--c-danger-text);">
-                  ${isSched ? '📅 Scheduled Maintenance Active' : '🔧 Manual Maintenance Active'}
+                  ${isSched ? '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Scheduled Maintenance Active' : '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Manual Maintenance Active'}
                 </span>
                 <span class="status-badge maintenance" style="font-size:9.5px; padding:2px 6px;">In Service</span>
               </div>
@@ -4364,9 +4382,9 @@
             <div style="display:flex; align-items:center; justify-content:space-around; background:var(--card); border:1px solid var(--border); border-radius:var(--r-md); padding:10px; margin-bottom:12px;">
               <div style="text-align:center;">
                 <div style="font-size:10px; color:var(--text-muted); margin-bottom:3px;">CURRENT STATUS</div>
-                <span class="status-badge maintenance">🔧 In Service</span>
+                <span class="status-badge maintenance"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> In Service</span>
               </div>
-              <div style="font-size:18px; color:var(--text-muted); font-weight:800;">➜</div>
+              <div style="color:var(--text-muted); display:flex; align-items:center;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
               <div style="text-align:center;">
                 <div style="font-size:10px; color:var(--text-muted); margin-bottom:3px;">NEW STATUS</div>
                 <span class="status-badge available">● Active / Available</span>
@@ -4389,7 +4407,7 @@
                 Cancel
               </button>
               <button type="button" class="btn-ppwsa-primary" style="flex:1.4; height:42px; font-size:13px; background:#16a34a;" onclick="app.executePutBackAvailable('${car.id}')">
-                ✅ Mark Available
+                <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Mark Available
               </button>
             </div>
           `;
@@ -4421,12 +4439,12 @@
           </div>
           <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:10px;">
             <button type="button" class="maint-tab-btn ${currentMode === 'manual' ? 'active' : ''}" onclick="app.switchMaintSheetMode('manual')" style="padding:8px 6px;">
-              <div style="font-size:16px; margin-bottom:2px;">🔧</div>
+              <div style="display:flex; justify-content:center; margin-bottom:4px;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
               <div style="font-weight:800; font-size:11.5px;">1. Set Manually</div>
               <div style="font-size:9.5px; opacity:0.8; margin-top:1px;">Immediate offline</div>
             </button>
             <button type="button" class="maint-tab-btn ${currentMode === 'scheduled' ? 'active' : ''}" onclick="app.switchMaintSheetMode('scheduled')" style="padding:8px 6px;">
-              <div style="font-size:16px; margin-bottom:2px;">📅</div>
+              <div style="display:flex; justify-content:center; margin-bottom:4px;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
               <div style="font-weight:800; font-size:11.5px;">2. Set Schedule</div>
               <div style="font-size:9.5px; opacity:0.8; margin-top:1px;">Planned date/time</div>
             </button>
@@ -4458,7 +4476,7 @@
 
             ${dayApproved.length > 0 ? `
               <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:var(--r-md); padding:8px 10px; margin-bottom:10px; font-size:11px; color:#92400e;">
-                <strong>⚠️ Active Bookings Alert:</strong> This vehicle has <strong>${dayApproved.length}</strong> approved booking(s) scheduled for today. Reassign trips or notify requesters.
+                <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> <strong>Active Bookings Alert:</strong> This vehicle has <strong>${dayApproved.length}</strong> approved booking(s) scheduled for today. Reassign trips or notify requesters.
               </div>
             ` : ''}
 
@@ -4477,7 +4495,7 @@
                 Cancel
               </button>
               <button type="button" class="btn-ppwsa-primary" style="flex:1.4; height:40px; font-size:12.5px; background:#d97706;" onclick="app.executeSetManualMaintenance('${car.id}')">
-                🔧 Set to Maintenance Manually
+                <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Set to Maintenance Manually
               </button>
             </div>
           `;
@@ -4528,7 +4546,7 @@
             </div>
 
             <div id="schedDateInfoBanner" style="background:var(--c-primary-tint); border:1px solid rgba(var(--c-primary-rgb),0.25); border-radius:var(--r-md); padding:6px 10px; margin-bottom:12px; font-size:10.5px; color:var(--c-primary-dk);">
-              ℹ️ Starts today: Vehicle status will switch to <strong>Maintenance</strong> immediately.
+              <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Starts today: Vehicle status will switch to <strong>Maintenance</strong> immediately.
             </div>
 
             <div style="display:flex; gap:10px;">
@@ -4536,7 +4554,7 @@
                 Cancel
               </button>
               <button type="button" class="btn-ppwsa-primary" style="flex:1.4; height:40px; font-size:12.5px;" onclick="app.executeSetScheduledMaintenance('${car.id}')">
-                📅 Set Schedule Maintenance
+                <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Set Schedule Maintenance
               </button>
             </div>
           `;
@@ -4559,9 +4577,9 @@
         const infoEl = document.getElementById('schedDateInfoBanner');
         if (infoEl) {
           if (newStartDate <= DateUtil.todayStr()) {
-            infoEl.innerHTML = 'ℹ️ Starts today: Vehicle status will switch to <strong>Maintenance</strong> immediately.';
+            infoEl.innerHTML = '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Starts today: Vehicle status will switch to <strong>Maintenance</strong> immediately.';
           } else {
-            infoEl.innerHTML = `ℹ️ Scheduled for <strong>${newStartDate}</strong>: Vehicle remains <strong>Available today</strong> and will be blocked during the scheduled maintenance window.`;
+            infoEl.innerHTML = `<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Scheduled for <strong>${newStartDate}</strong>: Vehicle remains <strong>Available today</strong> and will be blocked during the scheduled maintenance window.`;
           }
         }
       },
@@ -4599,7 +4617,7 @@
 
         this.saveData();
         this.closeSheet('maintenanceSheetOverlay');
-        this.showToast(`🔧 ${car.name} set to Maintenance (Manual)`, 'success');
+        this.showToast(`${car.name} set to Maintenance (Manual)`, 'success');
         this.renderCurrentTab();
       },
 
@@ -4656,8 +4674,8 @@
         this.saveData();
         this.closeSheet('maintenanceSheetOverlay');
         this.showToast(isStartingNowOrToday 
-          ? `🔧 ${car.name} is now in Scheduled Maintenance.` 
-          : `📅 Scheduled maintenance set for ${car.name} on ${startDate}.`, 'success');
+          ? `${car.name} is now in Scheduled Maintenance.` 
+          : `Scheduled maintenance set for ${car.name} on ${startDate}.`, 'success');
         this.renderCurrentTab();
       },
 
@@ -4685,7 +4703,7 @@
 
         this.saveData();
         this.closeSheet('maintenanceSheetOverlay');
-        this.showToast(`✅ ${car.name} (${car.plate}) is back into Available service.`, 'success');
+        this.showToast(`${car.name} (${car.plate}) is back into Available service.`, 'success');
         this.renderCurrentTab();
       },
 
@@ -4951,7 +4969,7 @@
         if (!approved.length) {
           banner.innerHTML = `
             <div style="font-size:11.5px; color:var(--c-success-text); background:var(--c-success-bg); padding:8px 12px; border-radius:var(--r-md); border:1px solid rgba(46,125,50,0.2);">
-              ✓ No reserved bookings on ${dateStr}. Full day is open!
+              <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> No reserved bookings on ${dateStr}. Full day is open!
             </div>
           `;
         } else {
@@ -4959,7 +4977,7 @@
             <div style="font-size:11.5px; color:var(--c-danger-text); background:var(--c-danger-bg); padding:8px 12px; border-radius:var(--r-md); border:1px solid rgba(198,40,40,0.2);">
               <strong>Already reserved slots on ${dateStr}:</strong>
               <div style="margin-top:2px;">
-                ${approved.map(b => `<div>• ${b.startTime}–${b.endTime} ("${b.purpose}")${b.returnedEarly ? ` <span style="color:#15803d; font-weight:700;">(Returned Early · Open from ${b.endTime} onward 🟢)</span>` : ''}</div>`).join('')}
+                ${approved.map(b => `<div>• ${b.startTime}–${b.endTime} ("${b.purpose}")${b.returnedEarly ? ` <span style="color:#15803d; font-weight:700;">(Returned Early · Open from ${b.endTime} onward)</span>` : ''}</div>`).join('')}
               </div>
             </div>
           `;
@@ -5094,13 +5112,13 @@
             
             <div style="font-size:12px; color:var(--text); background:var(--card); padding:8px 10px; border-radius:var(--r-md); border:1px solid var(--border-subtle); margin-top:8px;">
               "${b.purpose}"
-              ${b.destination ? `<div style="font-size:11px; color:var(--c-primary); margin-top:2px;">📍 ${b.destination}</div>` : ''}
+              ${b.destination ? `<div style="font-size:11px; color:var(--c-primary); margin-top:2px;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${b.destination}</div>` : ''}
             </div>
           </div>
 
           ${conflict ? `
             <div style="background:var(--c-danger-bg); color:var(--c-danger-text); padding:10px; border-radius:var(--r-md); font-size:11.5px; border:1px solid rgba(198,40,40,0.25);">
-              ⚠️ <strong>Double-booking warning:</strong> This vehicle already has an Approved booking for overlapping hours. Approval blocked.
+              <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> <strong>Double-booking warning:</strong> This vehicle already has an Approved booking for overlapping hours. Approval blocked.
             </div>
           ` : ''}
 
@@ -5299,12 +5317,12 @@
             ` : ''}
           ` : b.returnedEarly ? `
             <div style="margin-top:14px; background:#f0fdf4; border:1px solid #86efac; border-radius:var(--r-lg); padding:12px; color:#15803d; text-align:center;">
-              <div style="font-weight:800; font-size:13px;">✓ Vehicle Returned Early at ${b.actualEndTime || b.endTime}</div>
+              <div style="font-weight:800; font-size:13px;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Vehicle Returned Early at ${b.actualEndTime || b.endTime}</div>
               <div style="font-size:11.5px; color:#166534; margin-top:2px;">Scheduled until ${b.originalEndTime || '12:00'}. Vehicle slot released for colleagues.</div>
             </div>
           ` : b.status === 'Cancelled' ? `
             <div style="margin-top:14px; background:#fff7ed; border:1px solid #fed7aa; border-radius:var(--r-lg); padding:12px; color:#c2410c;">
-              <div style="font-weight:800; font-size:13px;">✕ Booking Cancelled</div>
+              <div style="font-weight:800; font-size:13px;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Booking Cancelled</div>
               <div style="font-size:11.5px; color:#9a3412; margin-top:2px;">Reason: "${b.cancelReason || 'No reason provided'}"</div>
               ${b.cancelledAt ? `<div style="font-size:10.5px; color:#ea580c; margin-top:2px;">Cancelled on ${b.cancelledAt}</div>` : ''}
             </div>
@@ -5360,10 +5378,10 @@
               </div>
               <div style="display:flex; background:var(--card); border:1.5px solid var(--border); border-radius:var(--r-full); padding:2px; gap:2px;">
                 <button type="button" class="chip-btn ${this.state.theme === 'light' ? 'active' : ''}" style="height:32px; padding:0 12px; font-size:11px; border:none;" onclick="app.setTheme('light')">
-                  ☀️ Light
+                  <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg> Light
                 </button>
                 <button type="button" class="chip-btn ${this.state.theme === 'dark' ? 'active' : ''}" style="height:32px; padding:0 12px; font-size:11px; border:none;" onclick="app.setTheme('dark')">
-                  🌙 Dark
+                  <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Dark
                 </button>
               </div>
             </div>
@@ -5376,10 +5394,10 @@
               </div>
               <div style="display:flex; background:var(--card); border:1.5px solid var(--border); border-radius:var(--r-full); padding:2px; gap:2px;">
                 <button type="button" class="chip-btn ${this.state.lang === 'en' ? 'active' : ''}" style="height:32px; padding:0 12px; font-size:11px; border:none;" onclick="app.setLang('en')">
-                  🇬🇧 English
+                  <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> English
                 </button>
                 <button type="button" class="chip-btn ${this.state.lang === 'kh' ? 'active' : ''}" style="height:32px; padding:0 12px; font-size:11px; border:none;" onclick="app.setLang('kh')">
-                  🇰🇭 ខ្មែរ
+                  <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> ខ្មែរ
                 </button>
               </div>
             </div>
@@ -5409,9 +5427,9 @@
                       <div>
                         <div style="font-weight:800; font-size:13.5px; color:var(--text); display:flex; align-items:center; gap:6px;">
                           <span>${usr.name}</span>
-                          ${isGeneralUsr ? '<span class="status-badge" style="font-size:9.5px; padding:2px 6px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe;">👤 General User</span>' : ''}
-                          ${isApproverUsr ? '<span class="status-badge" style="font-size:9.5px; padding:2px 6px; background:#fffbeb; color:#b45309; border:1px solid #fde68a;">🛡️ Approver</span>' : ''}
-                          ${isAdminUsr ? '<span class="status-badge" style="font-size:9.5px; padding:2px 6px; background:#fbf5f9; color:#875a7b; border:1px solid #e5d7e2;">👑 Administrator</span>' : ''}
+                          ${isGeneralUsr ? '<span class="status-badge" style="font-size:9.5px; padding:2px 6px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> General User</span>' : ''}
+                          ${isApproverUsr ? '<span class="status-badge" style="font-size:9.5px; padding:2px 6px; background:#fffbeb; color:#b45309; border:1px solid #fde68a;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Approver</span>' : ''}
+                          ${isAdminUsr ? '<span class="status-badge" style="font-size:9.5px; padding:2px 6px; background:#fbf5f9; color:#875a7b; border:1px solid #e5d7e2;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14v2H5z"/></svg> Administrator</span>' : ''}
                         </div>
                         <div style="font-size:11px; color:var(--text-secondary);">
                           ${usr.dept} · <strong>${isGeneralUsr ? 'General User' : usr.role}</strong>
@@ -5422,7 +5440,7 @@
                         </div>
                       </div>
                     </div>
-                    ${usr.id === this.state.currentUser ? '<span style="font-weight:800; color:var(--c-primary); font-size:12px;">✓ Active</span>' : ''}
+                    ${usr.id === this.state.currentUser ? '<span style="font-weight:800; color:var(--c-primary); font-size:12px;"><svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Active</span>' : ''}
                   </div>
                 `;
               }).join('')}
@@ -5431,7 +5449,7 @@
             <!-- Role & Navigation Permissions Matrix Reference Card -->
             <div style="margin-top:14px; padding:12px 14px; background:var(--card); border:1px dashed var(--border); border-radius:var(--r-md); font-size:11.5px; line-height:1.6; color:var(--text-secondary);">
               <div style="font-weight:800; color:var(--text); margin-bottom:4px; display:flex; align-items:center; gap:6px;">
-                <span>🧭</span> Role &amp; Navigation Permissions Matrix
+                <svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Role &amp; Navigation Permissions Matrix
               </div>
               <div style="display:flex; flex-direction:column; gap:4px; margin-top:6px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-bottom:1px solid var(--border-subtle);">
@@ -5541,7 +5559,7 @@
         const t = document.createElement('div');
         t.className = `ppwsa-toast ${type}`;
         t.innerHTML = `
-          <span>${type === 'success' ? '✓' : (type === 'error' ? '✕' : 'ℹ')}</span>
+          <span>${type === 'success' ? '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>' : (type === 'error' ? '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' : '<svg class="inline-svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>')}</span>
           <span>${msg}</span>
         `;
         container.appendChild(t);
