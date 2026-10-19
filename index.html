@@ -5073,29 +5073,30 @@
         const reqUser = this.data.users.find(u => u.id === b.requesterId);
         const conflict = this.checkCarConflict(b.carId, b.startDate, b.startTime, b.endTime, b.id);
 
-        let driverSelectHtml = '';
-        if (b.needDriver) {
-          const availDrivers = this.data.drivers.map(d => {
-            const isBusy = this.data.bookings.some(bk => 
-              bk.id !== b.id &&
-              bk.driverId === d.id && 
-              bk.startDate === b.startDate && 
-              bk.status === 'Approved' &&
-              DateUtil.isOverlap(b.startTime, b.endTime, bk.startTime, bk.endTime)
-            );
-            return `<option value="${d.id}" ${isBusy ? 'disabled' : ''}>${d.name} (${d.phone}) ${isBusy ? '— BUSY' : '— Available'}</option>`;
-          }).join('');
+        const availDrivers = this.data.drivers.map(d => {
+          const isBusy = this.data.bookings.some(bk => 
+            bk.id !== b.id &&
+            bk.driverId === d.id && 
+            bk.startDate === b.startDate && 
+            bk.status === 'Approved' &&
+            DateUtil.isOverlap(b.startTime, b.endTime, bk.startTime, bk.endTime)
+          );
+          const isSelected = b.driverId === d.id;
+          return `<option value="${d.id}" ${isSelected ? 'selected' : ''} ${isBusy && !isSelected ? 'disabled' : ''}>${d.name} (${d.phone}) ${isBusy && !isSelected ? '— BUSY' : '— Available'}</option>`;
+        }).join('');
 
-          driverSelectHtml = `
-            <div class="form-group-block" style="background:var(--c-warning-bg); padding:10px 12px; border-radius:var(--r-md); border:1px solid rgba(230,81,0,0.25);">
-              <label class="form-label-bold" style="color:var(--c-warning-text);">Assign Company Driver <span class="req-mark">* Required</span></label>
-              <select class="ppwsa-input" id="mReviewDriverSelect" style="background:#fff;">
-                <option value="">-- Choose an available driver --</option>
-                ${availDrivers}
-              </select>
+        const driverSelectHtml = `
+          <div class="form-group-block" style="background:var(--card-alt); padding:10px 12px; border-radius:var(--r-md); border:1px solid var(--border-subtle); margin-top:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+              <label class="form-label-bold" style="color:var(--text); margin-bottom:0;">Assign Company Driver</label>
+              <span style="font-size:11px; font-weight:600; color:var(--text-muted);">(Optional)</span>
             </div>
-          `;
-        }
+            <select class="ppwsa-input" id="mReviewDriverSelect" style="background:var(--card); color:var(--text); margin-top:4px;">
+              <option value="">-- No driver / Self-drive (Optional) --</option>
+              ${availDrivers}
+            </select>
+          </div>
+        `;
 
         document.getElementById('reviewSheetContent').innerHTML = `
           <div style="background:var(--card-alt); border:1px solid var(--border); border-radius:var(--r-lg); padding:14px;">
@@ -5145,14 +5146,15 @@
         const b = this.data.bookings.find(x => x.id === bookingId);
         if (!b) return;
 
-        if (b.needDriver) {
-          const sel = document.getElementById('mReviewDriverSelect');
-          if (!sel || !sel.value) {
-            this.showToast('Please select a driver to approve this booking.', 'error');
-            return;
-          }
+        const sel = document.getElementById('mReviewDriverSelect');
+        if (sel && sel.value) {
           b.driverId = sel.value;
+          b.needDriver = true;
           b.taskStatus = 'Assigned';
+        } else {
+          b.driverId = null;
+          b.needDriver = false;
+          b.taskStatus = null;
         }
 
         b.status = 'Approved';
